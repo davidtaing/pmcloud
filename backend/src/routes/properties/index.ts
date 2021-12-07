@@ -13,7 +13,7 @@ type response = {
   };
 };
 
-router.route("/").get((req, res, err) => {
+router.route("/:propertyId").get((req, res, err) => {
   const data: response = {
     addressLn1: "52 Ocean St",
     addressLn2: "Sydney NSW 2000",
