@@ -2,8 +2,15 @@ import express from "express";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import compression from "compression";
+import mongoose from "mongoose";
 
+import { MongoUrl } from "./config";
 import router from "./routes";
+
+mongoose
+  .connect(MongoUrl)
+  .then(() => console.log("Successfully connected to MongoDB"))
+  .catch((err) => console.error(err));
 
 const app = express();
 const port = 3000;
