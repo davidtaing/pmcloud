@@ -3,9 +3,12 @@ import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import compression from "compression";
 import mongoose from "mongoose";
+import { initialize } from "express-openapi";
+import swaggerUi from "swagger-ui-express";
 
 import { MongoUrl } from "./config";
-import router from "./routes";
+
+import apiDoc from "./api/api-doc";
 
 const app = express();
 const port = 3000;
@@ -23,13 +26,27 @@ async function main() {
   app.use(mongoSanitize());
   app.use(compression());
 
-  // Routers
-  app.use("/v1", router);
-
-  // Error Handler
-  app.use((req, res, next) => {
-    res.status(500).json({ message: "Internal Server Error" });
+  initialize({
+    apiDoc: apiDoc,
+    app,
+    paths: "./src/api/paths",
+    routesGlob: "**/*.{ts,js}",
+    routesIndexFileRegExp: /(?:index)?\.[tj]s$/,
   });
+
+  app.use(
+    "/openapi",
+    swaggerUi.serve,
+    swaggerUi.setup(undefined, {
+      swaggerOptions: {
+        url: "http://localhost:3000/api-docs",
+      },
+    })
+  );
+
+  app.use(((err, req, res, next) => {
+    res.status(err.status).json(err);
+  }) as express.ErrorRequestHandler);
 
   app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
