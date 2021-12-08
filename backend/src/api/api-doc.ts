@@ -32,84 +32,85 @@ const apiDoc = {
     },
   ],
   paths: {},
-
-  definitions: {
-    Landlord: {
-      type: "object",
-      properties: {
-        id: {
-          type: "string",
-        },
-        fullName: {
-          type: "string",
-        },
-        status: {
-          type: "string",
-        },
-        phone: {
-          type: "string",
-        },
-        mobile: {
-          type: "string",
-        },
-        email: {
-          type: "string",
-          format: "email",
-        },
-        addressLn1: {
-          type: "string",
-        },
-        addressLn2: {
-          type: "string",
-        },
-      },
-    },
-    Tenant: {
-      type: "object",
-      properties: {
-        id: {
-          type: "string",
-        },
-        fullName: {
-          type: "string",
-        },
-        status: {
-          type: "string",
-        },
-        phone: {
-          type: "string",
-        },
-        mobile: {
-          type: "string",
-        },
-        email: {
-          type: "string",
-          format: "email",
+  components: {
+    schemas: {
+      Landlord: {
+        type: "object",
+        properties: {
+          id: {
+            type: "string",
+          },
+          fullName: {
+            type: "string",
+          },
+          status: {
+            type: "string",
+          },
+          phone: {
+            type: "string",
+          },
+          mobile: {
+            type: "string",
+          },
+          email: {
+            type: "string",
+            format: "email",
+          },
+          addressLn1: {
+            type: "string",
+          },
+          addressLn2: {
+            type: "string",
+          },
         },
       },
-    },
-    Property: {
-      type: "object",
-      properties: {
-        id: {
-          type: "string",
+      Tenant: {
+        type: "object",
+        properties: {
+          id: {
+            type: "string",
+          },
+          fullName: {
+            type: "string",
+          },
+          status: {
+            type: "string",
+          },
+          phone: {
+            type: "string",
+          },
+          mobile: {
+            type: "string",
+          },
+          email: {
+            type: "string",
+            format: "email",
+          },
         },
-        addressLn1: {
-          type: "string",
-        },
-        addressLn2: {
-          type: "string",
-        },
-        landlord: {
-          type: "object",
-        },
-        tenant: {
-          type: "object",
-        },
-        previousTenants: {
-          type: "array",
-          items: {
-            $ref: "#/components/schemas/Tenant",
+      },
+      Property: {
+        type: "object",
+        properties: {
+          id: {
+            type: "string",
+          },
+          addressLn1: {
+            type: "string",
+          },
+          addressLn2: {
+            type: "string",
+          },
+          landlord: {
+            type: "object",
+          },
+          tenant: {
+            type: "object",
+          },
+          previousTenants: {
+            type: "array",
+            items: {
+              $ref: "#/components/schemas/Tenant",
+            },
           },
         },
       },
