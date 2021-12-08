@@ -13,12 +13,6 @@ const apiDoc = {
     },
     version: "1.0.0",
   },
-  servers: [
-    {
-      url: "https://virtserver.swaggerhub.com/davidtaing/pmcloud/1.0.0",
-      description: "SwaggerHub API Auto Mocking",
-    },
-  ],
   tags: [
     {
       name: "agents",
@@ -38,85 +32,84 @@ const apiDoc = {
     },
   ],
   paths: {},
-  components: {
-    schemas: {
-      Landlord: {
-        type: "object",
-        properties: {
-          id: {
-            type: "string",
-          },
-          fullName: {
-            type: "string",
-          },
-          status: {
-            type: "string",
-          },
-          phone: {
-            type: "string",
-          },
-          mobile: {
-            type: "string",
-          },
-          email: {
-            type: "string",
-            format: "email",
-          },
-          addressLn1: {
-            type: "string",
-          },
-          addressLn2: {
-            type: "string",
-          },
+
+  definitions: {
+    Landlord: {
+      type: "object",
+      properties: {
+        id: {
+          type: "string",
+        },
+        fullName: {
+          type: "string",
+        },
+        status: {
+          type: "string",
+        },
+        phone: {
+          type: "string",
+        },
+        mobile: {
+          type: "string",
+        },
+        email: {
+          type: "string",
+          format: "email",
+        },
+        addressLn1: {
+          type: "string",
+        },
+        addressLn2: {
+          type: "string",
         },
       },
-      Tenant: {
-        type: "object",
-        properties: {
-          id: {
-            type: "string",
-          },
-          fullName: {
-            type: "string",
-          },
-          status: {
-            type: "string",
-          },
-          phone: {
-            type: "string",
-          },
-          mobile: {
-            type: "string",
-          },
-          email: {
-            type: "string",
-            format: "email",
-          },
+    },
+    Tenant: {
+      type: "object",
+      properties: {
+        id: {
+          type: "string",
+        },
+        fullName: {
+          type: "string",
+        },
+        status: {
+          type: "string",
+        },
+        phone: {
+          type: "string",
+        },
+        mobile: {
+          type: "string",
+        },
+        email: {
+          type: "string",
+          format: "email",
         },
       },
-      Property: {
-        type: "object",
-        properties: {
-          id: {
-            type: "string",
-          },
-          addressLn1: {
-            type: "string",
-          },
-          addressLn2: {
-            type: "string",
-          },
-          landlord: {
-            type: "object",
-          },
-          tenant: {
-            type: "object",
-          },
-          previousTenants: {
-            type: "array",
-            items: {
-              $ref: "#/components/schemas/Tenant",
-            },
+    },
+    Property: {
+      type: "object",
+      properties: {
+        id: {
+          type: "string",
+        },
+        addressLn1: {
+          type: "string",
+        },
+        addressLn2: {
+          type: "string",
+        },
+        landlord: {
+          type: "object",
+        },
+        tenant: {
+          type: "object",
+        },
+        previousTenants: {
+          type: "array",
+          items: {
+            $ref: "#/components/schemas/Tenant",
           },
         },
       },
