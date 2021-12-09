@@ -105,3 +105,4 @@ dist
 
 # Backend Build Output
 backend/lib/
+openapi/build/

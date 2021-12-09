@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "npx @airtasker/spot generate --contract src/api/v1/api.ts --language json --generator openapi3 --out build/"
+  },
   "dependencies": {
     "@airtasker/spot": "^1.9.0"
   }
