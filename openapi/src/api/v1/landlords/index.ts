@@ -21,7 +21,7 @@ class GetLandlords {
 })
 class GetLandlordById {
   @request
-  request(@pathParams pathParams: { id: String }) {}
+  request(@pathParams pathParams: { id: string }) {}
 
   @response({ status: 200 })
   successfulResponse(@body body: LandlordListResponse) {}
@@ -57,7 +57,10 @@ class CreateLandlord {
 })
 class UpdateLandlord {
   @request
-  request(@pathParams pathParams: { id: String }, @body body: PatchLandlord) {}
+  request(
+    @pathParams pathParams: { id: string },
+    @body body: PatchLandlordRequest
+  ) {}
 
   @response({ status: 200 })
   successfulResponse(@body body: LandlordListResponse) {}
@@ -70,27 +73,28 @@ class UpdateLandlord {
 }
 
 interface Landlord {
-  fullname: String;
-  phone: String;
-  mobile: String;
-  email: String;
-  addressLn1: String;
-  addressLn2: String;
+  fullname: string;
+  phone: string;
+  mobile: string;
+  email: string;
+  addressLn1: string;
+  addressLn2: string;
 }
 
 interface PatchLandlord {
-  fullname?: String;
-  phone?: String;
-  mobile?: String;
-  email?: String;
-  addressLn1?: String;
-  addressLn2?: String;
+  fullname?: string;
+  phone?: string;
+  mobile?: string;
+  email?: string;
+  addressLn1?: string;
+  addressLn2?: string;
 }
 
 interface ErrorBody {
-  message: String;
+  message: string;
 }
 
 type CreateLandlordRequest = Landlord;
+type PatchLandlordRequest = PatchLandlord;
 type LandlordResponse = Landlord;
 type LandlordListResponse = Array<Landlord>;
