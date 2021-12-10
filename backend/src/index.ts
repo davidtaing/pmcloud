@@ -8,7 +8,7 @@ import swaggerUi from "swagger-ui-express";
 
 import { MongoUrl } from "./config";
 
-import apiDoc from "./api/api-doc";
+import apiDoc from "./api/v1/api-doc";
 
 const app = express();
 const port = 3000;
