@@ -1,4 +1,4 @@
-import { paths } from "../api-doc";
+import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 
 // Get Landlord
