@@ -16,12 +16,12 @@ class GetLandlords {
 
 @endpoint({
   method: "GET",
-  path: "/landlords/:id",
+  path: "/landlords/:landlordId",
   tags: ["Landlords"],
 })
 class GetLandlordById {
   @request
-  request(@pathParams pathParams: { id: string }) {}
+  request(@pathParams pathParams: { landlordId: string }) {}
 
   @response({ status: 200 })
   successfulResponse(@body body: LandlordListResponse) {}
@@ -52,13 +52,13 @@ class CreateLandlord {
 
 @endpoint({
   method: "PATCH",
-  path: "/landlords/:id",
+  path: "/landlords/:landlordId",
   tags: ["Landlords"],
 })
 class UpdateLandlord {
   @request
   request(
-    @pathParams pathParams: { id: string },
+    @pathParams pathParams: { landlordId: string },
     @body body: PatchLandlordRequest
   ) {}
 
