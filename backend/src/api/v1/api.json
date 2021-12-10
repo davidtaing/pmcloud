@@ -665,6 +665,9 @@
           "id": {
             "type": "string"
           },
+          "propertyId": {
+            "type": "string"
+          },
           "fullname": {
             "type": "string"
           },
@@ -686,6 +689,7 @@
         },
         "required": [
           "id",
+          "propertyId",
           "fullname",
           "phone",
           "mobile",
@@ -723,6 +727,9 @@
           "id": {
             "type": "string"
           },
+          "propertyId": {
+            "type": "string"
+          },
           "fullname": {
             "type": "string"
           },
@@ -743,7 +750,8 @@
           }
         },
         "required": [
-          "id"
+          "id",
+          "propertyId"
         ]
       },
       "PatchLandlordRequest": {
@@ -753,6 +761,9 @@
         "type": "object",
         "properties": {
           "id": {
+            "type": "string"
+          },
+          "propertyId": {
             "type": "string"
           },
           "fullname": {
@@ -770,6 +781,7 @@
         },
         "required": [
           "id",
+          "propertyId",
           "fullname",
           "phone",
           "mobile",
@@ -794,6 +806,9 @@
           "id": {
             "type": "string"
           },
+          "propertyId": {
+            "type": "string"
+          },
           "fullname": {
             "type": "string"
           },
@@ -808,7 +823,8 @@
           }
         },
         "required": [
-          "id"
+          "id",
+          "propertyId"
         ]
       },
       "PatchTenantRequest": {
@@ -825,12 +841,20 @@
           },
           "addressLn2": {
             "type": "string"
+          },
+          "landlord": {
+            "$ref": "#/components/schemas/Landlord"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/Tenant"
           }
         },
         "required": [
           "id",
           "addressLn1",
-          "addressLn2"
+          "addressLn2",
+          "landlord",
+          "tenant"
         ]
       },
       "PropertyResponse": {
