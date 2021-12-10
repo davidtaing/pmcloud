@@ -1,5 +1,6 @@
 export interface Landlord {
   id: string;
+  propertyId: string;
   fullname: string;
   phone: string;
   mobile: string;
