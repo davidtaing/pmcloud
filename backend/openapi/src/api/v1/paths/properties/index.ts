@@ -1,4 +1,5 @@
 import { endpoint, request, response, body, pathParams } from "@airtasker/spot";
+import { ErrorBody, Property, PatchProperty } from "../../components/schemas";
 
 @endpoint({
   method: "GET",
@@ -70,21 +71,6 @@ class UpdateProperty {
   forbiddenResponse(@body body: ErrorBody) {}
   @response({ status: 500 })
   internalServerErrorResponse(@body body: ErrorBody) {}
-}
-
-// TODO: Add other props like Landlord, Tenant & Payments
-interface Property {
-  addressLn1: string;
-  addressLn2: string;
-}
-
-interface PatchProperty {
-  addressLn1?: string;
-  addressLn2?: string;
-}
-
-interface ErrorBody {
-  message: string;
 }
 
 type CreatePropertyRequest = Property;

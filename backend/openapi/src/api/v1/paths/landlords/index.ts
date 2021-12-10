@@ -1,4 +1,5 @@
 import { endpoint, request, response, body, pathParams } from "@airtasker/spot";
+import { ErrorBody, Landlord, PatchLandlord } from "../../components/schemas";
 
 @endpoint({
   method: "GET",
@@ -70,28 +71,6 @@ class UpdateLandlord {
   forbiddenResponse(@body body: ErrorBody) {}
   @response({ status: 500 })
   internalServerErrorResponse(@body body: ErrorBody) {}
-}
-
-interface Landlord {
-  fullname: string;
-  phone: string;
-  mobile: string;
-  email: string;
-  addressLn1: string;
-  addressLn2: string;
-}
-
-interface PatchLandlord {
-  fullname?: string;
-  phone?: string;
-  mobile?: string;
-  email?: string;
-  addressLn1?: string;
-  addressLn2?: string;
-}
-
-interface ErrorBody {
-  message: string;
 }
 
 type CreateLandlordRequest = Landlord;
