@@ -9,5 +9,5 @@ import {
 
 import "./landlords";
 
-@api({ name: "my-api" })
+@api({ name: "pmcloud Backend API" })
 class Api {}
