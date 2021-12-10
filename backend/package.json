@@ -21,7 +21,8 @@
     "express-openapi": "^10.0.0",
     "helmet": "^4.6.0",
     "mongoose": "^6.0.15",
-    "swagger-ui-express": "^4.2.0"
+    "openapi-types": "^10.0.0",
+    "swagger-ui-express": "^3.0.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
