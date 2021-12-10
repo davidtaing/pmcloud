@@ -1,12 +1,12 @@
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 
-// Get Landlords
+// Get Properties
 const GET: Operation = (req: any, res: any, next: any) => {
   res.status(501).json({ message: "Not Yet Implemented" });
 };
 
-// Create Landlord
+// Create Property
 const POST: Operation = (req: any, res: any, next: any) => {
   res.status(501).json({ message: "Not Yet Implemented" });
 };
