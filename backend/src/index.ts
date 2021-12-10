@@ -29,7 +29,7 @@ async function main() {
   initialize({
     apiDoc: apiDoc,
     app,
-    paths: "./src/api/paths",
+    paths: "./src/api/v1/paths",
     routesGlob: "**/*.{ts,js}",
     routesIndexFileRegExp: /(?:index)?\.[tj]s$/,
   });
