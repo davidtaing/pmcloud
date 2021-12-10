@@ -7,9 +7,7 @@
   "paths": {
     "/landlords": {
       "get": {
-        "tags": [
-          "Landlords"
-        ],
+        "tags": ["Landlords"],
         "operationId": "GetLandlords",
         "responses": {
           "200": {
@@ -45,9 +43,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Landlords"
-        ],
+        "tags": ["Landlords"],
         "operationId": "CreateLandlord",
         "parameters": [],
         "requestBody": {
@@ -106,9 +102,7 @@
     },
     "/landlords/{landlordId}": {
       "get": {
-        "tags": [
-          "Landlords"
-        ],
+        "tags": ["Landlords"],
         "operationId": "GetLandlordById",
         "parameters": [
           {
@@ -154,9 +148,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Landlords"
-        ],
+        "tags": ["Landlords"],
         "operationId": "UpdateLandlord",
         "parameters": [
           {
@@ -224,9 +216,7 @@
     },
     "/tenants": {
       "get": {
-        "tags": [
-          "Tenants"
-        ],
+        "tags": ["Tenants"],
         "operationId": "GetTenants",
         "responses": {
           "200": {
@@ -262,9 +252,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Tenants"
-        ],
+        "tags": ["Tenants"],
         "operationId": "CreateTenant",
         "parameters": [],
         "requestBody": {
@@ -323,9 +311,7 @@
     },
     "/tenants/{tenantId}": {
       "get": {
-        "tags": [
-          "Tenants"
-        ],
+        "tags": ["Tenants"],
         "operationId": "GetTenantById",
         "parameters": [
           {
@@ -371,9 +357,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Tenants"
-        ],
+        "tags": ["Tenants"],
         "operationId": "UpdateTenants",
         "parameters": [
           {
@@ -441,9 +425,7 @@
     },
     "/properties": {
       "get": {
-        "tags": [
-          "Properties"
-        ],
+        "tags": ["Properties"],
         "operationId": "GetProperties",
         "responses": {
           "200": {
@@ -479,9 +461,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Properties"
-        ],
+        "tags": ["Properties"],
         "operationId": "CreateProperty",
         "parameters": [],
         "requestBody": {
@@ -540,9 +520,7 @@
     },
     "/properties/{propertyId}": {
       "get": {
-        "tags": [
-          "Properties"
-        ],
+        "tags": ["Properties"],
         "operationId": "GetPropertyById",
         "parameters": [
           {
@@ -588,9 +566,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Properties"
-        ],
+        "tags": ["Properties"],
         "operationId": "UpdateProperty",
         "parameters": [
           {
@@ -700,9 +676,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "LandlordListResponse": {
         "type": "array",
@@ -755,12 +729,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "fullname",
-          "phone",
-          "mobile",
-          "email"
-        ]
+        "required": ["fullname", "phone", "mobile", "email"]
       },
       "TenantResponse": {
         "$ref": "#/components/schemas/Tenant"
@@ -804,10 +773,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "addressLn1",
-          "addressLn2"
-        ]
+        "required": ["addressLn1", "addressLn2"]
       },
       "PropertyResponse": {
         "$ref": "#/components/schemas/Property"
