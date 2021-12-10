@@ -7,7 +7,9 @@
   "paths": {
     "/landlords": {
       "get": {
-        "tags": ["Landlords"],
+        "tags": [
+          "Landlords"
+        ],
         "operationId": "GetLandlords",
         "responses": {
           "200": {
@@ -43,7 +45,9 @@
         }
       },
       "post": {
-        "tags": ["Landlords"],
+        "tags": [
+          "Landlords"
+        ],
         "operationId": "CreateLandlord",
         "parameters": [],
         "requestBody": {
@@ -100,13 +104,15 @@
         }
       }
     },
-    "/landlords/{id}": {
+    "/landlords/{landlordId}": {
       "get": {
-        "tags": ["Landlords"],
+        "tags": [
+          "Landlords"
+        ],
         "operationId": "GetLandlordById",
         "parameters": [
           {
-            "name": "id",
+            "name": "landlordId",
             "in": "path",
             "required": true,
             "schema": {
@@ -148,11 +154,13 @@
         }
       },
       "patch": {
-        "tags": ["Landlords"],
+        "tags": [
+          "Landlords"
+        ],
         "operationId": "UpdateLandlord",
         "parameters": [
           {
-            "name": "id",
+            "name": "landlordId",
             "in": "path",
             "required": true,
             "schema": {
@@ -258,7 +266,9 @@
             "type": "string"
           }
         },
-        "required": ["message"]
+        "required": [
+          "message"
+        ]
       },
       "LandlordListResponse": {
         "type": "array",
