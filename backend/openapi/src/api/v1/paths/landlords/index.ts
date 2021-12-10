@@ -41,7 +41,7 @@ class CreateLandlord {
   @request
   request(@body body: CreateLandlordRequest) {}
 
-  @response({ status: 200 })
+  @response({ status: 201 })
   successfulResponse(@body body: LandlordResponse) {}
   @response({ status: 400 })
   badRequestResponse(@body body: ErrorBody) {}

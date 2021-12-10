@@ -41,7 +41,7 @@ class CreateProperty {
   @request
   request(@body body: CreatePropertyRequest) {}
 
-  @response({ status: 200 })
+  @response({ status: 201 })
   successfulResponse(@body body: PropertyResponse) {}
   @response({ status: 400 })
   badRequestResponse(@body body: ErrorBody) {}
