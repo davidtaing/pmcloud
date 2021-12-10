@@ -1,8 +1,8 @@
 import { api } from "@airtasker/spot";
 
-import "./landlords";
-import "./tenants";
-import "./properties";
+import "./paths/landlords";
+import "./paths/tenants";
+import "./paths/properties";
 
 @api({
   name: "pmcloud Backend API",
