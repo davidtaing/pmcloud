@@ -1,11 +1,4 @@
-import {
-  api,
-  body,
-  endpoint,
-  request,
-  response,
-  String,
-} from "@airtasker/spot";
+import { api } from "@airtasker/spot";
 
 import "./landlords";
 
