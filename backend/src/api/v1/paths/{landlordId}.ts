@@ -11,8 +11,8 @@ const PATCH: Operation = (req: any, res: any, next: any) => {
   res.status(501).json({ message: "Not Yet Implemented" });
 };
 
-GET.apiDoc = paths["/landlords/{landlordId}"].get;
-PATCH.apiDoc = paths["/landlords/{landlordId}"].patch;
+GET.apiDoc = paths["/landlords/{landlordId}"]?.get;
+PATCH.apiDoc = paths["/landlords/{landlordId}"]?.patch;
 
 const operations = () => ({ GET, PATCH });
 

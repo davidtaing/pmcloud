@@ -11,8 +11,8 @@ const POST: Operation = (req: any, res: any, next: any) => {
   res.status(501).json({ message: "Not Yet Implemented" });
 };
 
-GET.apiDoc = paths["/landlords"].get;
-POST.apiDoc = paths["/landlords"].post;
+GET.apiDoc = paths["/landlords"]?.get;
+POST.apiDoc = paths["/landlords"]?.post;
 
 const operations = () => ({ GET, POST });
 
