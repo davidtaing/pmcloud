@@ -11,8 +11,8 @@ interface LandlordOpenApiSchema {
   addressLn2: string;
 }
 
-// Corresponding Mongoose Schema
-export interface LandlordMongooseSchema {
+// Corresponding Mongoose Document Interface
+export interface LandlordMongooseDocument {
   propertyId: Types.ObjectId;
   fullname: string;
   phone: string;

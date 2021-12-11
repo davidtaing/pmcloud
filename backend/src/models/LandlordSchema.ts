@@ -1,8 +1,8 @@
 import { Schema, Types } from "mongoose";
-import { LandlordMongooseSchema } from "../../openapi/src/api/v1/components/schemas";
+import { LandlordMongooseDocument } from "../../openapi/src/api/v1/components/schemas";
 import PropertySchema from "./PropertySchema";
 
-const LandlordSchema = new Schema<LandlordMongooseSchema>({
+const LandlordSchema = new Schema<LandlordMongooseDocument>({
   propertyId: Types.ObjectId,
   fullname: { type: String, required: true },
   phone: { type: String, required: true },

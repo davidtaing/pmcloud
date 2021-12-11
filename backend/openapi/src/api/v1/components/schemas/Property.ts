@@ -10,8 +10,8 @@ interface PropertyOpenapiSchema {
   //previous tenants?
 }
 
-// Corresponding Mongoose Schema
-export interface PropertyMongooseSchema {
+// Corresponding Mongoose Document Interface
+export interface PropertyMongooseDocument {
   addressLn1: string;
   addressLn2: string;
   landlord: Landlord;

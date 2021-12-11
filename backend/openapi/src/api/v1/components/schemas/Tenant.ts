@@ -9,8 +9,8 @@ interface TenantOpenApiSchema {
   email: string;
 }
 
-// Corresponding Mongoose Schema
-export interface TenantMongooseSchema {
+// Corresponding Mongoose Document Interface
+export interface TenantMongooseDocument {
   propertyId: Types.ObjectId;
   fullname: string;
   phone: string;
