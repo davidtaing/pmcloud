@@ -1,12 +1,12 @@
-import { ObjectId } from "bson";
-import { Schema } from "mongoose";
+import { Types, Schema } from "mongoose";
+import { TenantMongooseSchema } from "../../openapi/src/api/v1/components/schemas";
 
-const TenantSchema = new Schema({
-  fullName: String,
-  phone: String,
-  mobile: String,
-  email: String,
-  propertyId: ObjectId,
+const TenantSchema = new Schema<TenantMongooseSchema>({
+  propertyId: Types.ObjectId,
+  fullname: { type: String, required: true },
+  phone: { type: String, required: true },
+  mobile: { type: String, required: true },
+  email: { type: String, required: true },
 });
 
 export default TenantSchema;
