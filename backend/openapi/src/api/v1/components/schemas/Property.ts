@@ -1,7 +1,7 @@
 import { Landlord, Tenant } from ".";
 
 // TODO: Add other props like Landlord, Tenant & Payments
-interface Property {
+interface PropertyOpenapiSchema {
   id: string;
   addressLn1: string;
   addressLn2: string;
@@ -10,4 +10,12 @@ interface Property {
   //previous tenants?
 }
 
-export default Property;
+// Corresponding Mongoose Schema
+export interface PropertyMongooseSchema {
+  addressLn1: string;
+  addressLn2: string;
+  landlord: Landlord;
+  tenant: Tenant;
+}
+
+export default PropertyOpenapiSchema;
