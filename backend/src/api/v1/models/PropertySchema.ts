@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { PropertyMongooseDocument } from "../../openapi/src/api/v1/components/schemas";
+import { PropertyMongooseDocument } from "../../../../openapi/src/api/v1/components/schemas";
 import LandlordSchema from "./LandlordSchema";
 import TenantSchema from "./TenantSchema";
 

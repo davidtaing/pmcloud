@@ -1,5 +1,5 @@
 import { Schema, Types } from "mongoose";
-import { LandlordMongooseDocument } from "../../openapi/src/api/v1/components/schemas";
+import { LandlordMongooseDocument } from "../../../../openapi/src/api/v1/components/schemas";
 import PropertySchema from "./PropertySchema";
 
 const LandlordSchema = new Schema<LandlordMongooseDocument>({
