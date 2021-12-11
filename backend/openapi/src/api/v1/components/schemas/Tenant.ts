@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 
-interface TenantOpenApiSchema {
+// OpenAPI Schema
+interface Tenant {
   id: string;
   propertyId: string;
   fullname: string;
@@ -18,4 +19,4 @@ export interface TenantMongooseDocument {
   email: string;
 }
 
-export default TenantOpenApiSchema;
+export default Tenant;
