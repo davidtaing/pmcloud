@@ -2,7 +2,6 @@ import { Types } from "mongoose";
 
 // OpenAPI Schema
 interface Tenant {
-  id: string;
   propertyId: string;
   fullname: string;
   phone: string;

@@ -3,7 +3,6 @@ import { Landlord, Tenant } from ".";
 // TODO: Add other props like Landlord, Tenant & Payments
 // OpenAPI Schema
 interface Property {
-  id: string;
   addressLn1: string;
   addressLn2: string;
   landlord: Landlord;

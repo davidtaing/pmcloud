@@ -662,9 +662,6 @@
       "Landlord": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "propertyId": {
             "type": "string"
           },
@@ -688,7 +685,6 @@
           }
         },
         "required": [
-          "id",
           "propertyId",
           "fullname",
           "phone",
@@ -724,9 +720,6 @@
       "PatchLandlord": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "propertyId": {
             "type": "string"
           },
@@ -748,11 +741,7 @@
           "addressLn2": {
             "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "propertyId"
-        ]
+        }
       },
       "PatchLandlordRequest": {
         "$ref": "#/components/schemas/PatchLandlord"
@@ -760,9 +749,6 @@
       "Tenant": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "propertyId": {
             "type": "string"
           },
@@ -780,7 +766,6 @@
           }
         },
         "required": [
-          "id",
           "propertyId",
           "fullname",
           "phone",
@@ -803,9 +788,6 @@
       "PatchTenant": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "propertyId": {
             "type": "string"
           },
@@ -821,11 +803,7 @@
           "email": {
             "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "propertyId"
-        ]
+        }
       },
       "PatchTenantRequest": {
         "$ref": "#/components/schemas/PatchTenant"
@@ -833,9 +811,6 @@
       "Property": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "addressLn1": {
             "type": "string"
           },
@@ -850,7 +825,6 @@
           }
         },
         "required": [
-          "id",
           "addressLn1",
           "addressLn2",
           "landlord",
@@ -872,19 +846,13 @@
       "PatchProperty": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "addressLn1": {
             "type": "string"
           },
           "addressLn2": {
             "type": "string"
           }
-        },
-        "required": [
-          "id"
-        ]
+        }
       },
       "PatchPropertyRequest": {
         "$ref": "#/components/schemas/PatchProperty"
