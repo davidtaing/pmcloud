@@ -1,13 +1,14 @@
+import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 
 // Get Tenants
-const GET: Operation = (req: any, res: any, next: any) => {
+const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
   res.status(501).json({ message: "Not Yet Implemented" });
 };
 
 // Create Tenant
-const POST: Operation = (req: any, res: any, next: any) => {
+const POST: Operation = (req: Request, res: Response, next: NextFunction) => {
   res.status(501).json({ message: "Not Yet Implemented" });
 };
 
