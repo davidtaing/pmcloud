@@ -1,15 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
+import {
+  getProperties,
+  createProperty,
+} from "../../controllers/properties.controller";
 
 // Get Properties
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  res.status(501).json({ message: "Not Yet Implemented" });
+  getProperties(req, res, next);
 };
 
 // Create Property
 const POST: Operation = (req: Request, res: Response, next: NextFunction) => {
-  res.status(501).json({ message: "Not Yet Implemented" });
+  createProperty(req, res, next);
 };
 
 GET.apiDoc = paths["/properties"]?.get;
