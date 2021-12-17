@@ -8,12 +8,12 @@ import {
 
 // Get Landlord
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  res.status(501).json({ message: "Not Yet Implemented" });
+  getLandlord(req, res, next);
 };
 
 // Update Landlord
 const PATCH: Operation = (req: Request, res: Response, next: NextFunction) => {
-  res.status(501).json({ message: "Not Yet Implemented" });
+  updateLandlord(req, res, next);
 };
 
 GET.apiDoc = paths["/landlords/{landlordId}"]?.get;
