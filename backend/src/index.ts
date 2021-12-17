@@ -2,22 +2,17 @@ import express from "express";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import compression from "compression";
-import mongoose from "mongoose";
 import { initialize } from "express-openapi";
 import swaggerUi from "swagger-ui-express";
 
-import { MongoUrl } from "./config";
-
 import apiDoc from "./api/v1/api-doc";
+import connectDb from "./db";
 
 const app = express();
 const port = 3000;
 
 async function main() {
-  await mongoose
-    .connect(MongoUrl)
-    .then(() => console.log("Successfully connected to MongoDB"))
-    .catch((err) => console.error(err));
+  connectDb();
 
   app.use(helmet());
   app.use(express.json());
