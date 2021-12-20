@@ -1,11 +1,12 @@
-import { Landlord, Tenant } from ".";
+import { Types } from "mongoose";
+import { Tenant } from ".";
 
 // TODO: Add other props like Landlord, Tenant & Payments
 // OpenAPI Schema
 interface Property {
   addressLn1: string;
   addressLn2: string;
-  landlord: Landlord;
+  landlordId: string;
   tenant: Tenant;
   //previous tenants?
 }
@@ -14,7 +15,7 @@ interface Property {
 export interface PropertyMongooseDocument {
   addressLn1: string;
   addressLn2: string;
-  landlord: Landlord;
+  landlordId: Types.ObjectId;
   tenant: Tenant;
 }
 

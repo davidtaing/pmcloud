@@ -817,8 +817,8 @@
           "addressLn2": {
             "type": "string"
           },
-          "landlord": {
-            "$ref": "#/components/schemas/Landlord"
+          "landlordId": {
+            "type": "string"
           },
           "tenant": {
             "$ref": "#/components/schemas/Tenant"
@@ -827,7 +827,7 @@
         "required": [
           "addressLn1",
           "addressLn2",
-          "landlord",
+          "landlordId",
           "tenant"
         ]
       },
@@ -851,6 +851,9 @@
           },
           "addressLn2": {
             "type": "string"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/Tenant"
           }
         }
       },
