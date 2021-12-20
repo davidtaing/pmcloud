@@ -12,8 +12,8 @@ export const getLandlord = async (
   next: NextFunction
 ) => {
   try {
-    //const result = await GetLandlord();
-    res.status(501).json();
+    const result = await GetLandlord(req.params.landlordId);
+    res.status(501).json(result);
   } catch (err) {
     res.status(501).json(err);
   }
