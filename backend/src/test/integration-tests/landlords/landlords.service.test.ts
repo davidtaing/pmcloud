@@ -58,4 +58,12 @@ describe("Landlords Service", () => {
       expect(result).toHaveProperty("_id");
     });
   });
+
+  describe("GetLandlords Second Invokation", () => {
+    it("should return an array with one element", async () => {
+      const result = await GetLandlords();
+
+      expect(result).toHaveLength(1);
+    });
+  });
 });
