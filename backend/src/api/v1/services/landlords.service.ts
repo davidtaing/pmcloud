@@ -1,5 +1,8 @@
 import { model } from "mongoose";
-import { PatchLandlord } from "../../../../openapi/src/api/v1/components/schemas";
+import {
+  PatchLandlord,
+  Landlord,
+} from "../../../../openapi/src/api/v1/components/schemas";
 
 import LandlordSchema from "../models/LandlordSchema";
 
@@ -23,7 +26,7 @@ export const GetLandlords = async (filter = {}) => {
   }
 };
 
-export const CreateLandlord = async (landlord: typeof LandlordSchema) => {
+export const CreateLandlord = async (landlord: Landlord) => {
   try {
     const results = await LandlordModel.create(landlord);
     return results;
