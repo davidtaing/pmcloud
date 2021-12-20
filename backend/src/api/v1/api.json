@@ -685,7 +685,6 @@
           }
         },
         "required": [
-          "propertyId",
           "fullname",
           "phone",
           "mobile",

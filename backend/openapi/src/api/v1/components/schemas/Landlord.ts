@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 
 // OpenAPI Schema
 interface Landlord {
-  propertyId: string;
+  propertyId?: string;
   fullname: string;
   phone: string;
   mobile: string;
@@ -13,7 +13,7 @@ interface Landlord {
 
 // Corresponding Mongoose Document Interface
 export interface LandlordMongooseDocument {
-  propertyId: Types.ObjectId;
+  propertyId?: Types.ObjectId;
   fullname: string;
   phone: string;
   mobile: string;
