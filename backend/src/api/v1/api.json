@@ -686,7 +686,6 @@
         },
         "required": [
           "fullname",
-          "phone",
           "mobile",
           "email",
           "addressLn1",

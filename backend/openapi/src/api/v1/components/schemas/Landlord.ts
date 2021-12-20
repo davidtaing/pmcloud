@@ -4,7 +4,7 @@ import { Types } from "mongoose";
 interface Landlord {
   propertyId?: string;
   fullname: string;
-  phone: string;
+  phone?: string;
   mobile: string;
   email: string;
   addressLn1: string;
@@ -15,7 +15,7 @@ interface Landlord {
 export interface LandlordMongooseDocument {
   propertyId?: Types.ObjectId;
   fullname: string;
-  phone: string;
+  phone?: string;
   mobile: string;
   email: string;
   addressLn1: string;

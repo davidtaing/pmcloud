@@ -38,10 +38,10 @@ export const createLandlord = async (
   next: NextFunction
 ) => {
   try {
-    //const result = await CreateLandlord();
-    res.status(501).json();
+    const result = await CreateLandlord(req.body);
+    res.status(501).json(result);
   } catch (err) {
-    res.status(501).json();
+    res.status(500).json(err);
   }
 };
 

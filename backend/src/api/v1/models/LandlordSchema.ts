@@ -4,7 +4,7 @@ import { LandlordMongooseDocument } from "../../../../openapi/src/api/v1/compone
 const LandlordSchema = new Schema<LandlordMongooseDocument>({
   propertyId: Types.ObjectId,
   fullname: { type: String, required: true },
-  phone: { type: String, required: true },
+  phone: String,
   mobile: { type: String, required: true },
   email: { type: String, required: true },
   addressLn1: { type: String, required: true },
