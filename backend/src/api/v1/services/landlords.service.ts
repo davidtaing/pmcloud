@@ -1,4 +1,5 @@
 import { model } from "mongoose";
+import { PatchLandlord } from "../../../../openapi/src/api/v1/components/schemas";
 
 import LandlordSchema from "../models/LandlordSchema";
 
@@ -31,10 +32,7 @@ export const CreateLandlord = async (landlord: typeof LandlordSchema) => {
   }
 };
 
-export const UpdateLandlord = async (
-  id: string,
-  landlord: typeof LandlordSchema
-) => {
+export const UpdateLandlord = async (id: string, landlord: PatchLandlord) => {
   try {
     const results = await LandlordModel.updateOne({ _id: id }, landlord);
     return results;

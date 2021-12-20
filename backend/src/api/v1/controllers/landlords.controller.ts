@@ -51,9 +51,10 @@ export const updateLandlord = async (
   next: NextFunction
 ) => {
   try {
-    //const result = await UpdateLandlord();
-    res.status(501).json();
+    const result = await UpdateLandlord(req.params.landlordId, req.body);
+    res.status(501).json(result);
   } catch (err) {
-    res.status(501).json(err);
+    console.error(err);
+    res.status(500).json(err);
   }
 };
