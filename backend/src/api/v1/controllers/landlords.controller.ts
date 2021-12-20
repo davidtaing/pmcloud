@@ -15,7 +15,7 @@ export const getLandlord = async (
     //const result = await GetLandlord();
     res.status(501).json();
   } catch (err) {
-    res.status(501).json();
+    res.status(501).json(err);
   }
 };
 
@@ -28,7 +28,7 @@ export const getLandlords = async (
     const result = await GetLandlords();
     res.status(501).json(result);
   } catch (err) {
-    res.status(501).json();
+    res.status(501).json(err);
   }
 };
 
@@ -54,6 +54,6 @@ export const updateLandlord = async (
     //const result = await UpdateLandlord();
     res.status(501).json();
   } catch (err) {
-    res.status(501).json();
+    res.status(501).json(err);
   }
 };

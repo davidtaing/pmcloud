@@ -15,7 +15,7 @@ export const getProperty = async (
     //const result = await GetProperty();
     res.status(501).json();
   } catch (err) {
-    res.status(501).json();
+    res.status(501).json(err);
   }
 };
 
@@ -28,7 +28,7 @@ export const getProperties = async (
     const result = await GetProperties();
     res.status(501).json(result);
   } catch (err) {
-    res.status(501).json();
+    res.status(501).json(err);
   }
 };
 
@@ -41,7 +41,7 @@ export const createProperty = async (
     //const result = await CreateProperty();
     res.status(501).json();
   } catch (err) {
-    res.status(501).json();
+    res.status(501).json(err);
   }
 };
 
@@ -54,6 +54,6 @@ export const updateProperty = async (
     //const result = await UpdateProperty();
     res.status(501).json();
   } catch (err) {
-    res.status(501).json();
+    res.status(501).json(err);
   }
 };
