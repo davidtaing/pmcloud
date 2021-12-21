@@ -151,14 +151,13 @@ describe("Landlords Service", () => {
     describe("LandlordId doesnt exist", () => {
       let payload: any;
       let result: any;
-      // Invalid Landlord ID
-      let id = "FFFFFFFFFFFFFFFFFFFFFFFF";
+      let invalidId = "FFFFFFFFFFFFFFFFFFFFFFFF";
 
       beforeAll(async () => {
         payload = {
           fullname: "Smith John",
         };
-        result = await UpdateLandlord(landlordId, payload);
+        result = await UpdateLandlord(invalidId, payload);
       });
 
       it("should return an object with property 'acknowleged' = true", () => {
@@ -167,6 +166,10 @@ describe("Landlords Service", () => {
 
       it("should return an object with property 'modifiedCount' = 0", () => {
         expect(result).toHaveProperty("modifiedCount", 0);
+      });
+
+      it("should return property 'matchedCount' = 0", () => {
+        expect(result).toHaveProperty("matchedCount", 0);
       });
     });
 
