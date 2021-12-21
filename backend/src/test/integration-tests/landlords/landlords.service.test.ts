@@ -165,5 +165,22 @@ describe("Landlords Service", () => {
         expect(result).toHaveProperty("modifiedCount", 0);
       });
     });
+
+    describe("Invalid LandlordId", () => {
+      let payload = { fullname: "J Smith" };
+      let result: any;
+      let id = "GGGGG";
+      const testMethod = async () => {
+        result = await UpdateLandlord(id, payload);
+      };
+
+      it("should throw API Error", () => {
+        expect(testMethod).rejects.toThrow(ApiError);
+      });
+
+      it("should have error message 'invalid-landlord-id'", () => {
+        expect(testMethod).rejects.toThrow(ApiErrorCodes.INVALID_LANDLORD_ID);
+      });
+    });
   });
 });

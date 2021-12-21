@@ -46,6 +46,10 @@ export const UpdateLandlord = async (id: string, landlord: PatchLandlord) => {
     const results = await LandlordModel.updateOne({ _id: id }, landlord);
     return results;
   } catch (err) {
+    if (err instanceof Error.CastError) {
+      throw new ApiError(ApiErrorCodes.INVALID_LANDLORD_ID);
+    }
+
     throw err;
   }
 };
