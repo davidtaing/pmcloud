@@ -2,13 +2,13 @@ import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 import {
-  getLandlord,
+  getLandlordById,
   updateLandlord,
 } from "../../controllers/landlords.controller";
 
 // Get Landlord
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  getLandlord(req, res, next);
+  getLandlordById(req, res, next);
 };
 
 // Update Landlord

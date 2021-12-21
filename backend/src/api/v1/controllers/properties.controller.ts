@@ -1,18 +1,18 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  GetProperty,
+  GetPropertyById,
   GetProperties,
   CreateProperty,
   UpdateProperty,
 } from "../services/properties.service";
 
-export const getProperty = async (
+export const getPropertyById = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    //const result = await GetProperty();
+    //const result = await GetPropertyById();
     res.status(501).json();
   } catch (err) {
     res.status(501).json(err);

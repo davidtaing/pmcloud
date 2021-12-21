@@ -1,18 +1,18 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  GetLandlord,
+  GetLandlordById,
   GetLandlords,
   CreateLandlord,
   UpdateLandlord,
 } from "../services/landlords.service";
 
-export const getLandlord = async (
+export const getLandlordById = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const result = await GetLandlord(req.params.landlordId);
+    const result = await GetLandlordById(req.params.landlordId);
     res.status(501).json(result);
   } catch (err) {
     res.status(501).json(err);

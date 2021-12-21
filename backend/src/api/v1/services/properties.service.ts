@@ -4,7 +4,7 @@ import PropertySchema from "../models/PropertySchema";
 
 const PropertyModel = model("Property", PropertySchema);
 
-export const GetProperty = async (id: string) => {
+export const GetPropertyById = async (id: string) => {
   try {
     const results = await PropertyModel.findById(id).exec();
     return results;

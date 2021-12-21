@@ -2,13 +2,13 @@ import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 import {
-  getProperty,
+  getPropertyById,
   updateProperty,
 } from "../../controllers/properties.controller";
 
 // Get Property
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  getProperty(req, res, next);
+  getPropertyById(req, res, next);
 };
 
 // Update Property

@@ -8,7 +8,7 @@ import LandlordSchema from "../models/LandlordSchema";
 
 const LandlordModel = model("Landlord", LandlordSchema);
 
-export const GetLandlord = async (id: string) => {
+export const GetLandlordById = async (id: string) => {
   try {
     const results = await LandlordModel.findById(id).exec();
     return results;

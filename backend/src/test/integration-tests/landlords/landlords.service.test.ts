@@ -4,7 +4,7 @@ import {
   closeTestDatabase,
 } from "../../../testDb";
 import {
-  GetLandlord,
+  GetLandlordById,
   GetLandlords,
   CreateLandlord,
   UpdateLandlord,
@@ -77,7 +77,7 @@ describe("Landlords Service", () => {
       let result: any;
 
       beforeAll(async () => {
-        result = await GetLandlord(landlordId);
+        result = await GetLandlordById(landlordId);
       });
 
       it("should return landlord object that was created in previous test", () => {
@@ -96,7 +96,7 @@ describe("Landlords Service", () => {
       let id = "FFFFFFFFFFFFFFFFFFFFFFFF";
 
       beforeAll(async () => {
-        result = await GetLandlord(id);
+        result = await GetLandlordById(id);
       });
 
       it("should return null", () => {
