@@ -26,9 +26,9 @@ export const getLandlords = async (
 ) => {
   try {
     const result = await GetLandlords();
-    res.status(501).json(result);
+    res.status(200).json(result);
   } catch (err) {
-    res.status(501).json(err);
+    res.status(500).json(err);
   }
 };
 
