@@ -20,13 +20,23 @@ afterAll(async () => {
  */
 describe("/landlords controllers", () => {
   describe("GET /landlords", () => {
-    it("should return 200 Status and ", async () => {
-      request(app)
+    it("should return 200 Status", async () => {
+      const res = await request(app)
         .get("/landlords")
-        .set("Accept", "application/json")
-        .expect("Content-Type", /json/)
-        .expect(200)
-        .end(() => {});
+        .set("Accept", "application/json");
+
+      expect(res.statusCode).toBe(200);
+    });
+  });
+
+  describe("POST /landlords", () => {
+    it("should have 201 status code", async () => {
+      const res = await request(app)
+        .post("/landlords")
+        .send()
+        .set("Accept", "application/json");
+
+      expect(res.statusCode).toBe(201);
     });
   });
 });
