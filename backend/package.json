@@ -11,6 +11,7 @@
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "build:openapi": "cd openapi && npm run build && cd ..",
     "test": "jest",
+    "test:debug": "jest --detectOpenHandles",
     "test:unit": "jest --group=unit",
     "test:integration": "jest --group=integration"
   },
