@@ -92,7 +92,6 @@ describe("Landlords Service", () => {
 
     describe("Landlord Doesn't Exist", () => {
       let result: any;
-      // Invalid Landlord ID
       let id = "FFFFFFFFFFFFFFFFFFFFFFFF";
 
       beforeAll(async () => {
@@ -101,6 +100,19 @@ describe("Landlords Service", () => {
 
       it("should return null", () => {
         expect(result).toBeNull();
+      });
+    });
+
+    describe("Invalid Landlord Id", () => {
+      // Invalid Landlord ID
+      let result: any;
+      let id = "GGGGG";
+      const testMethod = async () => {
+        result = await GetLandlordById(id);
+      };
+
+      it("should throw error", () => {
+        expect(testMethod).rejects.toThrow();
       });
     });
   });
