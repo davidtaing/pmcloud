@@ -1,8 +1,10 @@
-import { model } from "mongoose";
+import { model, Error } from "mongoose";
 import {
   PatchLandlord,
   Landlord,
 } from "../../../../openapi/src/api/v1/components/schemas";
+import ApiError from "../../../util/ApiError";
+import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
 import LandlordSchema from "../models/LandlordSchema";
 
@@ -13,6 +15,10 @@ export const GetLandlordById = async (id: string) => {
     const results = await LandlordModel.findById(id).exec();
     return results;
   } catch (err) {
+    if (err instanceof Error.CastError) {
+      throw new ApiError(ApiErrorCodes.INVALID_LANDLORD_ID);
+    }
+
     throw err;
   }
 };
