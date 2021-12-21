@@ -25,6 +25,13 @@ afterAll(async () => {
 describe("Landlords Service", () => {
   // this will be set by the CreateLandlord and used for GetLandlordById & UpdateLandlord tests
   let landlordId: string;
+  const createLandlordPayload = {
+    fullname: "John Smith",
+    mobile: "0491570006",
+    email: "davidtaing@fake.com",
+    addressLn1: "123 Fake St",
+    addressLn2: "Sydney NSW 2000",
+  };
 
   describe("GetLandlords", () => {
     it("should return an empty array", async () => {
@@ -39,13 +46,7 @@ describe("Landlords Service", () => {
     let result: any;
 
     beforeAll(async () => {
-      payload = {
-        fullname: "John Smith",
-        mobile: "0491570006",
-        email: "davidtaing@fake.com",
-        addressLn1: "123 Fake St",
-        addressLn2: "Sydney NSW 2000",
-      };
+      payload = createLandlordPayload;
       result = await CreateLandlord(payload);
       landlordId = result?._id.toString();
     });
@@ -68,6 +69,23 @@ describe("Landlords Service", () => {
       const result = await GetLandlords();
 
       expect(result).toHaveLength(1);
+    });
+  });
+
+  describe("GetLandlordById", () => {
+    let result: any;
+
+    beforeAll(async () => {
+      result = await GetLandlord(landlordId);
+    });
+
+    it("should return landlord object that was created in previous test", () => {
+      expect(result).toEqual(expect.objectContaining(createLandlordPayload));
+    });
+
+    it("should return a _id property that matches landlordId param", () => {
+      expect(result).toHaveProperty("_id");
+      expect(result._id.toString()).toBe(landlordId);
     });
   });
 
