@@ -6,8 +6,6 @@ const getMongoUrl = () => {
   switch (process.env.NODE_ENV) {
     case "production":
       return process.env.MONGO_PROD_URL;
-    case "test":
-      return process.env.MONGO_TEST_URL;
     case "development":
     default:
       return process.env.MONGO_DEV_URL;
