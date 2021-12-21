@@ -9,6 +9,8 @@ import {
   CreateLandlord,
   UpdateLandlord,
 } from "../../../api/v1/services/landlords.service";
+import ApiError from "../../../util/ApiError";
+import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
 beforeAll(async () => {
   await connectTestDatabase();
@@ -111,8 +113,12 @@ describe("Landlords Service", () => {
         result = await GetLandlordById(id);
       };
 
-      it("should throw error", () => {
-        expect(testMethod).rejects.toThrow();
+      it("should throw API Error", () => {
+        expect(testMethod).rejects.toThrow(ApiError);
+      });
+
+      it("should have error message 'invalid-landlord-id'", () => {
+        expect(testMethod).rejects.toThrow(ApiErrorCodes.INVALID_LANDLORD_ID);
       });
     });
   });
