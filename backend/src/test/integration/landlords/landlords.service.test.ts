@@ -2,7 +2,7 @@ import {
   connectTestDatabase,
   clearTestDatabase,
   closeTestDatabase,
-} from "../../../testDb";
+} from "../../util/testDb";
 import {
   GetLandlordById,
   GetLandlords,

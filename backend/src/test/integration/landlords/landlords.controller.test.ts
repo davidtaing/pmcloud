@@ -4,7 +4,7 @@ import {
   connectTestDatabase,
   clearTestDatabase,
   closeTestDatabase,
-} from "../../../testDb";
+} from "../../util/testDb";
 
 beforeAll(async () => {
   await connectTestDatabase();
