@@ -142,6 +142,10 @@ describe("Landlords Service", () => {
       it("should return an object with property 'modifiedCount' = 1", () => {
         expect(result).toHaveProperty("modifiedCount", 1);
       });
+
+      it("should return property 'matchedCount' = 1", () => {
+        expect(result).toHaveProperty("matchedCount", 1);
+      });
     });
 
     describe("LandlordId doesnt exist", () => {
