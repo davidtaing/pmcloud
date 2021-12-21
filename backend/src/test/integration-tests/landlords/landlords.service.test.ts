@@ -73,39 +73,79 @@ describe("Landlords Service", () => {
   });
 
   describe("GetLandlordById", () => {
-    let result: any;
+    describe("Finds Landlord Created in Previous Test", () => {
+      let result: any;
 
-    beforeAll(async () => {
-      result = await GetLandlord(landlordId);
+      beforeAll(async () => {
+        result = await GetLandlord(landlordId);
+      });
+
+      it("should return landlord object that was created in previous test", () => {
+        expect(result).toEqual(expect.objectContaining(createLandlordPayload));
+      });
+
+      it("should return a _id property that matches landlordId param", () => {
+        expect(result).toHaveProperty("_id");
+        expect(result._id.toString()).toBe(landlordId);
+      });
     });
 
-    it("should return landlord object that was created in previous test", () => {
-      expect(result).toEqual(expect.objectContaining(createLandlordPayload));
-    });
+    describe("Landlord Doesn't Exist", () => {
+      let result: any;
+      // Invalid Landlord ID
+      let id = "FFFFFFFFFFFFFFFFFFFFFFFF";
 
-    it("should return a _id property that matches landlordId param", () => {
-      expect(result).toHaveProperty("_id");
-      expect(result._id.toString()).toBe(landlordId);
+      beforeAll(async () => {
+        result = await GetLandlord(id);
+      });
+
+      it("should return null", () => {
+        expect(result).toBeNull();
+      });
     });
   });
 
   describe("UpdateLandlord", () => {
-    let payload: any;
-    let result: any;
+    describe("Finds Landlord from CreateLandlord Test", () => {
+      let payload: any;
+      let result: any;
 
-    beforeAll(async () => {
-      payload = {
-        fullname: "Smith John",
-      };
-      result = await UpdateLandlord(landlordId, payload);
+      beforeAll(async () => {
+        payload = {
+          fullname: "Smith John",
+        };
+        result = await UpdateLandlord(landlordId, payload);
+      });
+
+      it("should return an object with property 'acknowleged' = true", () => {
+        expect(result).toHaveProperty("acknowledged", true);
+      });
+
+      it("should return an object with property 'modifiedCount' = 1", () => {
+        expect(result).toHaveProperty("modifiedCount", 1);
+      });
     });
 
-    it("should return an object with property 'acknowleged' = true", () => {
-      expect(result).toHaveProperty("acknowledged", true);
-    });
+    describe("LandlordId doesnt exist", () => {
+      let payload: any;
+      let result: any;
+      // Invalid Landlord ID
+      let id = "FFFFFFFFFFFFFFFFFFFFFFFF";
 
-    it("should return an object with property 'modifiedCount' = 1", () => {
-      expect(result).toHaveProperty("modifiedCount", 1);
+      beforeAll(async () => {
+        payload = {
+          fullname: "Smith John",
+        };
+        result = await UpdateLandlord(landlordId, payload);
+      });
+
+      it("should return an object with property 'acknowleged' = true", () => {
+        expect(result).toHaveProperty("acknowledged", true);
+      });
+
+      it("should return an object with property 'modifiedCount' = 0", () => {
+        expect(result).toHaveProperty("modifiedCount", 0);
+      });
     });
   });
 });
