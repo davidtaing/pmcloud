@@ -23,6 +23,9 @@ afterAll(async () => {
  * @group integration
  */
 describe("Landlords Service", () => {
+  // this will be set by the CreateLandlord and used for GetLandlordById & UpdateLandlord tests
+  let landlordId: string;
+
   describe("GetLandlords", () => {
     it("should return an empty array", async () => {
       const result = await GetLandlords();
@@ -44,6 +47,7 @@ describe("Landlords Service", () => {
         addressLn2: "Sydney NSW 2000",
       };
       result = await CreateLandlord(payload);
+      landlordId = result?._id.toString();
     });
 
     it("should return new landlord object with the same payload content", () => {
@@ -64,6 +68,26 @@ describe("Landlords Service", () => {
       const result = await GetLandlords();
 
       expect(result).toHaveLength(1);
+    });
+  });
+
+  describe("UpdateLandlord", () => {
+    let payload: any;
+    let result: any;
+
+    beforeAll(async () => {
+      payload = {
+        fullname: "Smith John",
+      };
+      result = await UpdateLandlord(landlordId, payload);
+    });
+
+    it("should return an object with property 'acknowleged' = true", () => {
+      expect(result).toHaveProperty("acknowledged", true);
+    });
+
+    it("should return an object with property 'modifiedCount' = 1", () => {
+      expect(result).toHaveProperty("modifiedCount", 1);
     });
   });
 });
