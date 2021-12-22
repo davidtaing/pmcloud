@@ -12,7 +12,7 @@ interface Landlord {
 }
 
 // Corresponding Mongoose Document Interface
-export interface LandlordMongooseDocument {
+export interface LandlordDocument {
   propertyId?: Types.ObjectId;
   fullname: string;
   phone?: string;

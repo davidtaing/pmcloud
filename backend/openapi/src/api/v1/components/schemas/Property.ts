@@ -12,7 +12,7 @@ interface Property {
 }
 
 // Corresponding Mongoose Document Interface
-export interface PropertyMongooseDocument {
+export interface PropertyDocument {
   addressLn1: string;
   addressLn2: string;
   landlordId: Types.ObjectId;

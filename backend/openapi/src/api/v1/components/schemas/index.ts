@@ -1,20 +1,20 @@
 import ErrorBody from "./ErrorBody";
-import Landlord, { LandlordMongooseDocument } from "./Landlord";
+import Landlord, { LandlordDocument } from "./Landlord";
 import PatchLandlord from "./PatchLandlord";
-import Tenant, { TenantMongooseDocument } from "./Tenant";
+import Tenant, { TenantDocument } from "./Tenant";
 import PatchTenant from "./PatchTenant";
-import Property, { PropertyMongooseDocument } from "./Property";
+import Property, { PropertyDocument } from "./Property";
 import PatchProperty from "./PatchProperty";
 
 export {
   ErrorBody,
   Landlord,
-  LandlordMongooseDocument,
+  LandlordDocument,
   PatchLandlord,
   Tenant,
-  TenantMongooseDocument,
+  TenantDocument,
   PatchTenant,
   Property,
-  PropertyMongooseDocument,
+  PropertyDocument,
   PatchProperty,
 };

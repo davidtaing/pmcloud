@@ -10,7 +10,7 @@ interface Tenant {
 }
 
 // Corresponding Mongoose Document Interface
-export interface TenantMongooseDocument {
+export interface TenantDocument {
   propertyId: Types.ObjectId;
   fullname: string;
   phone: string;
