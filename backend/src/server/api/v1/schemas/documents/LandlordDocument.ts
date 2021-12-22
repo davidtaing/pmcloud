@@ -9,3 +9,5 @@ export interface LandlordDocument {
   addressLn1: string;
   addressLn2: string;
 }
+
+export default LandlordDocument;

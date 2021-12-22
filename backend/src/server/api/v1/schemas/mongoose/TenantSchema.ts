@@ -1,5 +1,5 @@
 import { Types, Schema } from "mongoose";
-import { TenantDocument } from "../documents/TenantDocument";
+import TenantDocument from "../documents/TenantDocument";
 
 const TenantSchema = new Schema<TenantDocument>({
   propertyId: Types.ObjectId,

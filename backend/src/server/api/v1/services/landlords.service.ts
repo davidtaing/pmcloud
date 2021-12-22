@@ -5,10 +5,7 @@ import {
 } from "../../../../openapi/api/v1/components/schemas";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
-
-import LandlordSchema from "../models/LandlordSchema";
-
-const LandlordModel = model("Landlord", LandlordSchema);
+import LandlordModel from "../models/LandlordModel";
 
 export const GetLandlordById = async (id: string) => {
   try {

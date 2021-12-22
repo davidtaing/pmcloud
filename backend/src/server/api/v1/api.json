@@ -818,15 +818,15 @@
           "landlordId": {
             "type": "string"
           },
-          "tenant": {
-            "$ref": "#/components/schemas/Tenant"
+          "tenantId": {
+            "type": "string"
           }
         },
         "required": [
           "addressLn1",
           "addressLn2",
           "landlordId",
-          "tenant"
+          "tenantId"
         ]
       },
       "PropertyResponse": {

@@ -1,9 +1,11 @@
 import { Types } from "mongoose";
 
-export interface TenantDocument {
+interface TenantDocument {
   propertyId: Types.ObjectId;
   fullname: string;
   phone: string;
   mobile: string;
   email: string;
 }
+
+export default TenantDocument;
