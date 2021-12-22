@@ -39,7 +39,7 @@ export const createLandlord = async (
 ) => {
   try {
     const result = await CreateLandlord(req.body);
-    res.status(501).json(result);
+    res.status(201).json(result);
   } catch (err) {
     res.status(500).json(err);
   }
