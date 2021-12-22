@@ -5,6 +5,8 @@ import {
   getLandlords,
   createLandlord,
 } from "../../controllers/landlords.controller";
+import validate from "../../../../middlewares/validate";
+import { CreateZodSchema } from "../../schemas/zod/landlords";
 
 // Get Landlords
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
@@ -12,9 +14,12 @@ const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
 };
 
 // Create Landlord
-const POST: Operation = (req: Request, res: Response, next: NextFunction) => {
-  createLandlord(req, res, next);
-};
+const POST: Operation = [
+  validate(CreateZodSchema),
+  (req: Request, res: Response, next: NextFunction) => {
+    createLandlord(req, res, next);
+  },
+];
 
 GET.apiDoc = paths["/landlords"]?.get;
 POST.apiDoc = paths["/landlords"]?.post;
