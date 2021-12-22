@@ -2,7 +2,7 @@ import { model, Error } from "mongoose";
 import {
   PatchLandlord,
   Landlord,
-} from "../../../../openapi/src/api/v1/components/schemas";
+} from "../../../openapi/api/v1/components/schemas";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
 

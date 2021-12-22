@@ -2,6 +2,7 @@
   "compilerOptions": {
     /* Language and Environment */
     "target": "esnext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "experimentalDecorators": true,
 
     /* Modules */
     "module": "esnext" /* Specify what module code is generated. */,
