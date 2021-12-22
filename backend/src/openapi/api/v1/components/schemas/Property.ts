@@ -1,4 +1,3 @@
-import { Types } from "mongoose";
 import { Tenant } from ".";
 
 // TODO: Add other props like Landlord, Tenant & Payments
@@ -9,14 +8,6 @@ interface Property {
   landlordId: string;
   tenant: Tenant;
   //previous tenants?
-}
-
-// Corresponding Mongoose Document Interface
-export interface PropertyDocument {
-  addressLn1: string;
-  addressLn2: string;
-  landlordId: Types.ObjectId;
-  tenant: Tenant;
 }
 
 export default Property;

@@ -1,6 +1,7 @@
-// OpenAPI Schema
-interface Landlord {
-  propertyId?: string;
+import { Types } from "mongoose";
+
+export interface LandlordDocument {
+  propertyId?: Types.ObjectId;
   fullname: string;
   phone?: string;
   mobile: string;
@@ -8,5 +9,3 @@ interface Landlord {
   addressLn1: string;
   addressLn2: string;
 }
-
-export default Landlord;
