@@ -4,7 +4,7 @@ import IdZodSchema from "../IdZodSchema";
 
 export const CreateZodSchema = z.object({
   body: z.object({
-    propertyId: z.string().optional(),
+    propertyId: IdZodSchema.optional(),
     fullname: z.string(),
     phone: z.string().optional(),
     mobile: z.string(),
@@ -22,7 +22,7 @@ export const GetByIdZodSchema = z.object({
 
 export const UpdateZodSchema = z.object({
   body: z.object({
-    propertyId: z.string().optional(),
+    propertyId: IdZodSchema.optional(),
     fullname: z.string().optional(),
     phone: z.string().optional(),
     mobile: z.string().optional(),
