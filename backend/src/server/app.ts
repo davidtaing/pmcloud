@@ -19,7 +19,7 @@ app.use(compression());
 initialize({
   apiDoc: apiDoc,
   app,
-  paths: "./src/api/v1/paths",
+  paths: "./src/server/api/v1/paths",
   routesGlob: "**/*.{ts,js}",
   routesIndexFileRegExp: /(?:index)?\.[tj]s$/,
 });

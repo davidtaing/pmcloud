@@ -1,5 +1,5 @@
 import { Types, Schema } from "mongoose";
-import { TenantDocument } from "../../../openapi/api/v1/components/schemas";
+import { TenantDocument } from "../../../../openapi/api/v1/components/schemas";
 
 const TenantSchema = new Schema<TenantDocument>({
   propertyId: Types.ObjectId,
