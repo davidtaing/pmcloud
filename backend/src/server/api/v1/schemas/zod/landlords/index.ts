@@ -5,12 +5,12 @@ import IdZodSchema from "../IdZodSchema";
 export const CreateZodSchema = z.object({
   body: z.object({
     propertyId: IdZodSchema.optional(),
-    fullname: z.string(),
-    phone: z.string().optional(),
-    mobile: z.string(),
+    fullname: z.string().nonempty(),
+    phone: z.string().length(10).optional(),
+    mobile: z.string().length(10),
     email: z.string().email(),
-    addressLn1: z.string(),
-    addressLn2: z.string(),
+    addressLn1: z.string().nonempty(),
+    addressLn2: z.string().nonempty(),
   }),
 });
 
@@ -23,12 +23,12 @@ export const GetByIdZodSchema = z.object({
 export const UpdateZodSchema = z.object({
   body: z.object({
     propertyId: IdZodSchema.optional(),
-    fullname: z.string().optional(),
-    phone: z.string().optional(),
-    mobile: z.string().optional(),
+    fullname: z.string().nonempty().optional(),
+    phone: z.string().length(10).optional(),
+    mobile: z.string().length(10).optional(),
     email: z.string().email().optional(),
-    addressLn1: z.string().optional(),
-    addressLn2: z.string().optional(),
+    addressLn1: z.string().nonempty().optional(),
+    addressLn2: z.string().nonempty().optional(),
   }),
   params: z.object({
     landlordId: IdZodSchema,
