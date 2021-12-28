@@ -2,7 +2,6 @@ import {
   Property,
   PatchProperty,
 } from "../../../../openapi/api/v1/components/schemas";
-import LandlordModel from "../models/LandlordModel";
 import PropertyModel from "../models/PropertyModel";
 
 export const GetProperties = async (filter = {}) => {
@@ -15,7 +14,7 @@ export const GetProperties = async (filter = {}) => {
 
 export const GetPropertyById = async (id: string) => {
   try {
-    return await LandlordModel.findById(id).exec();
+    return await PropertyModel.findById(id).exec();
   } catch (err) {
     throw err;
   }
@@ -23,7 +22,7 @@ export const GetPropertyById = async (id: string) => {
 
 export const CreateProperty = async (property: Property) => {
   try {
-    return await LandlordModel.create(property);
+    return await PropertyModel.create(property);
   } catch (err) {
     throw err;
   }
@@ -31,7 +30,7 @@ export const CreateProperty = async (property: Property) => {
 
 export const UpdateProperty = async (id: string, doc: PatchProperty) => {
   try {
-    return await LandlordModel.updateOne({ _id: id }, doc);
+    return await PropertyModel.updateOne({ _id: id }, doc);
   } catch (err) {
     throw err;
   }
