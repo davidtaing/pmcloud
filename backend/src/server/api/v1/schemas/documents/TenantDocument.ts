@@ -1,11 +1,9 @@
 import { Types } from "mongoose";
+import { Tenant } from "../../../../../openapi/api/v1/components/schemas";
 
-interface TenantDocument {
+// remove and replace propertyId type
+interface TenantDocument extends Omit<Tenant, "propertyId"> {
   propertyId: Types.ObjectId;
-  fullname: string;
-  phone: string;
-  mobile: string;
-  email: string;
 }
 
 export default TenantDocument;
