@@ -1,4 +1,4 @@
-export interface ErrorBody {
+interface ErrorBody {
   message: string;
 }
 

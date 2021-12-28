@@ -1,5 +1,6 @@
 import { Schema, Types } from "mongoose";
 import { LandlordDocument } from "../documents/LandlordDocument";
+import AddressSchema from "./AddressSchema";
 
 const LandlordSchema = new Schema<LandlordDocument>({
   propertyId: Types.ObjectId,
@@ -7,8 +8,7 @@ const LandlordSchema = new Schema<LandlordDocument>({
   phone: String,
   mobile: { type: String, required: true },
   email: { type: String, required: true },
-  addressLn1: { type: String, required: true },
-  addressLn2: { type: String, required: true },
+  address: AddressSchema,
 });
 
 export default LandlordSchema;

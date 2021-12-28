@@ -10,8 +10,10 @@ const testLandlord = {
   fullname: "John Smith",
   mobile: "0491570006",
   email: "davidtaing@fake.com",
-  addressLn1: "123 Fake St",
-  addressLn2: "Sydney NSW 2000",
+  address: {
+    addressLn1: "123 Fake St",
+    addressLn2: "Sydney NSW 2000",
+  },
 };
 
 beforeAll(async () => {

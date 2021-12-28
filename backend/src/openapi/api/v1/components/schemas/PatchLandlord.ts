@@ -1,3 +1,5 @@
+import { Address } from "./";
+
 // For PATCH Requests which don't require all properties to be sent
 interface PatchLandlord {
   propertyId?: string;
@@ -5,8 +7,7 @@ interface PatchLandlord {
   phone?: string;
   mobile?: string;
   email?: string;
-  addressLn1?: string;
-  addressLn2?: string;
+  address?: Address;
 }
 
 export default PatchLandlord;

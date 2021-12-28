@@ -31,8 +31,10 @@ describe("Landlords Service", () => {
     fullname: "John Smith",
     mobile: "0491570006",
     email: "davidtaing@fake.com",
-    addressLn1: "123 Fake St",
-    addressLn2: "Sydney NSW 2000",
+    address: {
+      addressLn1: "123 Fake St",
+      addressLn2: "Sydney NSW 2000",
+    },
   };
 
   describe("GetLandlords", () => {
@@ -54,7 +56,7 @@ describe("Landlords Service", () => {
     });
 
     it("should return new landlord object with the same payload content", () => {
-      expect(result).toEqual(expect.objectContaining(payload));
+      expect(result).toMatchObject(payload);
     });
 
     it("should have a __v property added", () => {
@@ -83,7 +85,7 @@ describe("Landlords Service", () => {
       });
 
       it("should return landlord object that was created in previous test", () => {
-        expect(result).toEqual(expect.objectContaining(createLandlordPayload));
+        expect(result).toMatchObject(createLandlordPayload);
       });
 
       it("should return a _id property that matches landlordId param", () => {

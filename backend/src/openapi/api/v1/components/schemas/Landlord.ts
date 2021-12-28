@@ -1,3 +1,5 @@
+import { Address } from "./";
+
 // OpenAPI Schema
 interface Landlord {
   propertyId?: string;
@@ -5,8 +7,7 @@ interface Landlord {
   phone?: string;
   mobile: string;
   email: string;
-  addressLn1: string;
-  addressLn2: string;
+  address: Address;
 }
 
 export default Landlord;

@@ -1,6 +1,7 @@
+import { Address } from "./";
+
 interface Property {
-  addressLn1: string;
-  addressLn2: string;
+  address: Address;
   landlordId: string;
   tenantId: string;
 }

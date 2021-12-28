@@ -659,6 +659,17 @@
   },
   "components": {
     "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "addressLn1": {
+            "type": "string"
+          },
+          "addressLn2": {
+            "type": "string"
+          }
+        }
+      },
       "Landlord": {
         "type": "object",
         "properties": {
@@ -677,19 +688,15 @@
           "email": {
             "type": "string"
           },
-          "addressLn1": {
-            "type": "string"
-          },
-          "addressLn2": {
-            "type": "string"
+          "address": {
+            "$ref": "#/components/schemas/Address"
           }
         },
         "required": [
           "fullname",
           "mobile",
           "email",
-          "addressLn1",
-          "addressLn2"
+          "address"
         ]
       },
       "LandlordResponse": {
@@ -733,11 +740,8 @@
           "email": {
             "type": "string"
           },
-          "addressLn1": {
-            "type": "string"
-          },
-          "addressLn2": {
-            "type": "string"
+          "address": {
+            "$ref": "#/components/schemas/Address"
           }
         }
       },
@@ -809,11 +813,8 @@
       "Property": {
         "type": "object",
         "properties": {
-          "addressLn1": {
-            "type": "string"
-          },
-          "addressLn2": {
-            "type": "string"
+          "address": {
+            "$ref": "#/components/schemas/Address"
           },
           "landlordId": {
             "type": "string"
@@ -823,8 +824,7 @@
           }
         },
         "required": [
-          "addressLn1",
-          "addressLn2",
+          "address",
           "landlordId",
           "tenantId"
         ]
@@ -844,11 +844,8 @@
       "PatchProperty": {
         "type": "object",
         "properties": {
-          "addressLn1": {
-            "type": "string"
-          },
-          "addressLn2": {
-            "type": "string"
+          "address": {
+            "$ref": "#/components/schemas/Address"
           },
           "tenant": {
             "$ref": "#/components/schemas/Tenant"
