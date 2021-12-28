@@ -6,12 +6,16 @@ import {
   GetByIdZodSchema,
   UpdateZodSchema,
 } from "../../schemas/zod/properties";
+import {
+  getPropertyById,
+  updateProperty,
+} from "../../controllers/properties.controller";
 
 // Get Property
 const GET: Operation = [
   validate(GetByIdZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
-    res.status(501).json({ message: "Not Yet Implemented" });
+    getPropertyById(req, res, next);
   },
 ];
 
@@ -19,7 +23,7 @@ const GET: Operation = [
 const PATCH: Operation = [
   validate(UpdateZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
-    res.status(501).json({ message: "Not Yet Implemented" });
+    updateProperty(req, res, next);
   },
 ];
 
