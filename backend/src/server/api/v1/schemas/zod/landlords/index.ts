@@ -2,7 +2,7 @@
 import { z } from "zod";
 import IdZodSchema from "../IdZodSchema";
 
-export const CreateZodSchema = z.object({
+export const CreateLandlordsZodSchema = z.object({
   body: z.object({
     propertyId: IdZodSchema.optional(),
     fullname: z.string().nonempty(),
