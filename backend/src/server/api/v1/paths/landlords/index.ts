@@ -1,23 +1,20 @@
 import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
-import {
-  getLandlords,
-  createLandlord,
-} from "../../controllers/landlords.controller";
 import validate from "../../../../middlewares/validate";
 import { CreateZodSchema } from "../../schemas/zod/landlords";
+import LandlordController from "../../controllers/landlords.controller";
 
 // Get Landlords
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  getLandlords(req, res, next);
+  LandlordController.getLandlords(req, res, next);
 };
 
 // Create Landlord
 const POST: Operation = [
   validate(CreateZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
-    createLandlord(req, res, next);
+    LandlordController.createLandlord(req, res, next);
   },
 ];
 
