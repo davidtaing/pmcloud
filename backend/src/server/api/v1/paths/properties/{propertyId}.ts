@@ -6,16 +6,13 @@ import {
   GetByIdZodSchema,
   UpdateZodSchema,
 } from "../../schemas/zod/properties";
-import {
-  getPropertyById,
-  updateProperty,
-} from "../../controllers/properties.controller";
+import PropertyController from "../../controllers/properties.controller";
 
 // Get Property
 const GET: Operation = [
   validate(GetByIdZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
-    getPropertyById(req, res, next);
+    PropertyController.getPropertyById(req, res, next);
   },
 ];
 
@@ -23,7 +20,7 @@ const GET: Operation = [
 const PATCH: Operation = [
   validate(UpdateZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
-    updateProperty(req, res, next);
+    PropertyController.updateProperty(req, res, next);
   },
 ];
 
