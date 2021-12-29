@@ -1,10 +1,6 @@
 import app from "../../../app";
 import request from "supertest";
-import {
-  connectTestDatabase,
-  clearTestDatabase,
-  closeTestDatabase,
-} from "../../util/testDb";
+import TestDb from "../../util/testDb";
 
 const testLandlord = {
   fullname: "John Smith",
@@ -17,12 +13,12 @@ const testLandlord = {
 };
 
 beforeAll(async () => {
-  await connectTestDatabase();
+  await TestDb.connectTestDatabase();
 });
 
 afterAll(async () => {
-  await clearTestDatabase();
-  await closeTestDatabase();
+  await TestDb.clearTestDatabase();
+  await TestDb.closeTestDatabase();
 });
 
 /**

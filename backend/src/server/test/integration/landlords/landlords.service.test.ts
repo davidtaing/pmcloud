@@ -1,19 +1,15 @@
-import {
-  connectTestDatabase,
-  clearTestDatabase,
-  closeTestDatabase,
-} from "../../util/testDb";
+import TestDb from "../../util/testDb";
 import LandlordService from "../../../api/v1/services/landlords.service";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
 beforeAll(async () => {
-  await connectTestDatabase();
+  await TestDb.connectTestDatabase();
 });
 
 afterAll(async () => {
-  await clearTestDatabase();
-  await closeTestDatabase();
+  await TestDb.clearTestDatabase();
+  await TestDb.closeTestDatabase();
 });
 
 /**
