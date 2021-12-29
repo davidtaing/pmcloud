@@ -3,12 +3,7 @@ import {
   clearTestDatabase,
   closeTestDatabase,
 } from "../../util/testDb";
-import {
-  GetLandlordById,
-  GetLandlords,
-  CreateLandlord,
-  UpdateLandlord,
-} from "../../../api/v1/services/landlords.service";
+import LandlordService from "../../../api/v1/services/landlords.service";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
@@ -39,7 +34,7 @@ describe("Landlords Service", () => {
 
   describe("GetLandlords", () => {
     it("should return an empty array", async () => {
-      const result = await GetLandlords();
+      const result = await LandlordService.getLandlords();
 
       expect(result).toHaveLength(0);
     });
@@ -51,7 +46,7 @@ describe("Landlords Service", () => {
 
     beforeAll(async () => {
       payload = createLandlordPayload;
-      result = await CreateLandlord(payload);
+      result = await LandlordService.createLandlord(payload);
       landlordId = result?._id.toString();
     });
 
@@ -70,7 +65,7 @@ describe("Landlords Service", () => {
 
   describe("GetLandlords Second Invokation", () => {
     it("should return an array with one element", async () => {
-      const result = await GetLandlords();
+      const result = await LandlordService.getLandlords();
 
       expect(result).toHaveLength(1);
     });
@@ -81,7 +76,7 @@ describe("Landlords Service", () => {
       let result: any;
 
       beforeAll(async () => {
-        result = await GetLandlordById(landlordId);
+        result = await LandlordService.getLandlordById(landlordId);
       });
 
       it("should return landlord object that was created in previous test", () => {
@@ -99,7 +94,7 @@ describe("Landlords Service", () => {
       let id = "FFFFFFFFFFFFFFFFFFFFFFFF";
 
       beforeAll(async () => {
-        result = await GetLandlordById(id);
+        result = await LandlordService.getLandlordById(id);
       });
 
       it("should return null", () => {
@@ -112,7 +107,7 @@ describe("Landlords Service", () => {
       let result: any;
       let id = "GGGGG";
       const testMethod = async () => {
-        result = await GetLandlordById(id);
+        result = await LandlordService.getLandlordById(id);
       };
 
       it("should throw API Error", () => {
@@ -134,7 +129,7 @@ describe("Landlords Service", () => {
         payload = {
           fullname: "Smith John",
         };
-        result = await UpdateLandlord(landlordId, payload);
+        result = await LandlordService.updateLandlord(landlordId, payload);
       });
 
       it("should return an object with property 'acknowleged' = true", () => {
@@ -159,7 +154,7 @@ describe("Landlords Service", () => {
         payload = {
           fullname: "Smith John",
         };
-        result = await UpdateLandlord(invalidId, payload);
+        result = await LandlordService.updateLandlord(invalidId, payload);
       });
 
       it("should return an object with property 'acknowleged' = true", () => {
@@ -180,7 +175,7 @@ describe("Landlords Service", () => {
       let result: any;
       let id = "GGGGG";
       const testMethod = async () => {
-        result = await UpdateLandlord(id, payload);
+        result = await LandlordService.updateLandlord(id, payload);
       };
 
       it("should throw API Error", () => {

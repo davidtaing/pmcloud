@@ -1,10 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import {
-  GetLandlordById,
-  GetLandlords,
-  CreateLandlord,
-  UpdateLandlord,
-} from "../services/landlords.service";
+import LandlordsService from "../services/landlords.service";
 
 class LandlordController {
   static async getLandlordById(
@@ -13,7 +8,9 @@ class LandlordController {
     next: NextFunction
   ) {
     try {
-      const result = await GetLandlordById(req.params.landlordId);
+      const result = await LandlordsService.getLandlordById(
+        req.params.landlordId
+      );
       res.status(501).json(result);
     } catch (err) {
       res.status(501).json(err);
@@ -22,7 +19,7 @@ class LandlordController {
 
   static async getLandlords(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await GetLandlords();
+      const result = await LandlordsService.getLandlords();
       res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -31,7 +28,7 @@ class LandlordController {
 
   static async createLandlord(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await CreateLandlord(req.body);
+      const result = await LandlordsService.createLandlord(req.body);
       res.status(201).json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -40,7 +37,10 @@ class LandlordController {
 
   static async updateLandlord(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await UpdateLandlord(req.params.landlordId, req.body);
+      const result = await LandlordsService.updateLandlord(
+        req.params.landlordId,
+        req.body
+      );
       res.status(501).json(result);
     } catch (err) {
       console.error(err);
