@@ -3,18 +3,18 @@ import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 import validate from "../../../../middlewares/validate";
 import { CreateZodSchema } from "../../schemas/zod/tenants";
-import { getTenants, createTenant } from "../../controllers/tenants.controller";
+import TenantsController from "../../controllers/tenants.controller";
 
 // Get Tenants
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  getTenants(req, res, next);
+  TenantsController.getTenants(req, res, next);
 };
 
 // Create Tenant
 const POST: Operation = [
   validate(CreateZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
-    createTenant(req, res, next);
+    TenantsController.createTenant(req, res, next);
   },
 ];
 
