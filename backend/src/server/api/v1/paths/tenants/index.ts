@@ -3,17 +3,18 @@ import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 import validate from "../../../../middlewares/validate";
 import { CreateZodSchema } from "../../schemas/zod/tenants";
+import { getTenants, createTenant } from "../../controllers/tenants.controller";
 
 // Get Tenants
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  res.status(501).json({ message: "Not Yet Implemented" });
+  getTenants(req, res, next);
 };
 
 // Create Tenant
 const POST: Operation = [
   validate(CreateZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
-    res.status(501).json({ message: "Not Yet Implemented" });
+    createTenant(req, res, next);
   },
 ];
 
