@@ -1,8 +1,8 @@
 import TestDb from "../../util/testDb";
 import PropertiesService from "../../../api/v1/services/properties.service";
-import LandlordsService from "../../../api/v1/services/landlords.service";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
+import Helpers from "../../util/helpers";
 
 /**
  * @group integration
@@ -19,18 +19,7 @@ describe("PropertiesService", () => {
 
   beforeAll(async () => {
     await TestDb.connectTestDatabase();
-    const testLandlord = {
-      fullname: "John Smith",
-      mobile: "0491570006",
-      email: "johnsmith@fake.com",
-      address: {
-        addressLn1: "123 Fake St",
-        addressLn2: "Sydney NSW 2000",
-      },
-    };
-
-    const landlord = await LandlordsService.create(testLandlord);
-    testProperty.landlordId = landlord._id;
+    testProperty.landlordId = (await Helpers.createLandlord())._id;
   });
 
   afterAll(async () => {
