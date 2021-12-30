@@ -7,7 +7,7 @@ import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
 import LandlordModel from "../models/LandlordModel";
 
-class LandlordService {
+class LandlordsService {
   static async getLandlordById(id: string) {
     try {
       const results = await LandlordModel.findById(id).exec();
@@ -51,4 +51,4 @@ class LandlordService {
   }
 }
 
-export default LandlordService;
+export default LandlordsService;
