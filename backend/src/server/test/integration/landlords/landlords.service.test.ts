@@ -1,5 +1,5 @@
 import TestDb from "../../util/testDb";
-import LandlordService from "../../../api/v1/services/landlords.service";
+import LandlordsService from "../../../api/v1/services/landlords.service";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
@@ -15,171 +15,229 @@ afterAll(async () => {
 /**
  * @group integration
  */
-describe("Landlords Service", () => {
-  // this will be set by the CreateLandlord and used for GetLandlordById & UpdateLandlord tests
+describe("LandlordsService", () => {
   let landlordId: string;
-  const createLandlordPayload = {
+  const testLandlord = {
     fullname: "John Smith",
     mobile: "0491570006",
-    email: "davidtaing@fake.com",
+    email: "johnsmith@fake.com",
     address: {
       addressLn1: "123 Fake St",
       addressLn2: "Sydney NSW 2000",
     },
   };
 
-  describe("GetLandlords", () => {
-    it("should return an empty array", async () => {
-      const result = await LandlordService.getLandlords();
+  describe("createLandlord", () => {
+    describe("Success", () => {
+      describe("Input: Valid Object, Output: Landlord Document", () => {
+        let result: any;
 
-      expect(result).toHaveLength(0);
-    });
-  });
+        beforeAll(async () => {
+          result = await LandlordsService.createLandlord(testLandlord);
+          landlordId = result._id;
+        });
 
-  describe("CreateLandlord", () => {
-    let payload: any;
-    let result: any;
+        // valid object => Landlord document
+        test("contains payload data", () => {
+          expect(result).toMatchObject(testLandlord);
+        });
 
-    beforeAll(async () => {
-      payload = createLandlordPayload;
-      result = await LandlordService.createLandlord(payload);
-      landlordId = result?._id.toString();
-    });
+        test("has added _id property", () => {
+          expect(result).toHaveProperty("_id");
+        });
 
-    it("should return new landlord object with the same payload content", () => {
-      expect(result).toMatchObject(payload);
-    });
-
-    it("should have a __v property added", () => {
-      expect(result).toHaveProperty("__v");
-    });
-
-    it("should have a _id property added", () => {
-      expect(result).toHaveProperty("_id");
-    });
-  });
-
-  describe("GetLandlords Second Invokation", () => {
-    it("should return an array with one element", async () => {
-      const result = await LandlordService.getLandlords();
-
-      expect(result).toHaveLength(1);
-    });
-  });
-
-  describe("GetLandlordById", () => {
-    describe("Finds Landlord Created in Previous Test", () => {
-      let result: any;
-
-      beforeAll(async () => {
-        result = await LandlordService.getLandlordById(landlordId);
+        test("has added __v property", () => {
+          expect(result).toHaveProperty("__v");
+        });
       });
 
-      it("should return landlord object that was created in previous test", () => {
-        expect(result).toMatchObject(createLandlordPayload);
-      });
+      describe("Failure", () => {
+        describe("Input: Invalid Landlord Object, Output: API Error", () => {
+          let invalidLandlord = {
+            fullname: "",
+            mobile: "",
+            email: "johnsmith@fake.com",
+            address: {
+              addressLn1: "123 Fake St",
+              addressLn2: "Sydney NSW 2000",
+            },
+          };
+          let result: any;
 
-      it("should return a _id property that matches landlordId param", () => {
-        expect(result).toHaveProperty("_id");
-        expect(result._id.toString()).toBe(landlordId);
-      });
-    });
+          const testMethod = async () => {
+            result = await LandlordsService.createLandlord(invalidLandlord);
+          };
 
-    describe("Landlord Doesn't Exist", () => {
-      let result: any;
-      let id = "FFFFFFFFFFFFFFFFFFFFFFFF";
-
-      beforeAll(async () => {
-        result = await LandlordService.getLandlordById(id);
-      });
-
-      it("should return null", () => {
-        expect(result).toBeNull();
-      });
-    });
-
-    describe("Invalid Landlord Id", () => {
-      // Invalid Landlord ID
-      let result: any;
-      let id = "GGGGG";
-      const testMethod = async () => {
-        result = await LandlordService.getLandlordById(id);
-      };
-
-      it("should throw API Error", () => {
-        expect(testMethod).rejects.toThrow(ApiError);
-      });
-
-      it("should have error message 'invalid-landlord-id'", () => {
-        expect(testMethod).rejects.toThrow(ApiErrorCodes.INVALID_LANDLORD_ID);
+          test("throws error", () => {
+            expect(testMethod).rejects.toThrow(Error);
+          });
+        });
       });
     });
   });
 
-  describe("UpdateLandlord", () => {
-    describe("Finds Landlord from CreateLandlord Test", () => {
-      let payload: any;
-      let result: any;
+  describe("getLandlords", () => {
+    describe("Success", () => {
+      describe("Input: None, Output: Landlords[1]", () => {
+        let result: any;
 
-      beforeAll(async () => {
-        payload = {
-          fullname: "Smith John",
+        beforeAll(async () => {
+          result = await LandlordsService.getLandlords();
+        });
+
+        test("returns array", () => {
+          expect(Array.isArray(result)).toBe(true);
+        });
+
+        test("array contains one element", () => {
+          expect(result).toHaveLength(1);
+        });
+
+        test("element is the same document from the createLandlord test", () => {
+          expect(result[0]).toMatchObject(testLandlord);
+        });
+      });
+    });
+  });
+
+  describe("getLandlordById", () => {
+    describe("Success", () => {
+      describe("Input: Valid ID, Output: Landlord Doc", () => {
+        let result: any;
+
+        beforeAll(async () => {
+          result = await LandlordsService.getLandlordById(landlordId);
+        });
+
+        // valid id => Landlord document
+        test("returns test Landlord", () => {
+          expect(result).toMatchObject(testLandlord);
+        });
+      });
+    });
+
+    describe("Failure", () => {
+      describe("Input: Valid ID, Output: Error (Landlord Not Found)", () => {
+        let result: any;
+        const validId = "FFFFFFFFFFFFFFFFFFFFFFFF";
+
+        beforeAll(async () => {
+          result = await LandlordsService.getLandlordById(validId);
+        });
+
+        // valid id => Landlord document
+        test("returns test Landlord", () => {
+          expect(result).toBe(null);
+        });
+      });
+
+      describe("Input: Invalid ID, Output: Error (Invalid Landlord)", () => {
+        let result: any;
+        const testMethod = async (landlordId: string) => {
+          result = await LandlordsService.getLandlordById(landlordId);
         };
-        result = await LandlordService.updateLandlord(landlordId, payload);
-      });
 
-      it("should return an object with property 'acknowleged' = true", () => {
-        expect(result).toHaveProperty("acknowledged", true);
-      });
+        test("returns test Landlord", () => {
+          const invalidId = "";
 
-      it("should return an object with property 'modifiedCount' = 1", () => {
-        expect(result).toHaveProperty("modifiedCount", 1);
+          expect(testMethod(invalidId)).rejects.toThrow(
+            new ApiError(ApiErrorCodes.INVALID_LANDLORD_ID)
+          );
+        });
       });
+    });
+  });
 
-      it("should return property 'matchedCount' = 1", () => {
-        expect(result).toHaveProperty("matchedCount", 1);
+  describe("updateLandlord", () => {
+    describe("Success", () => {
+      describe("Input: Valid ID + Valid Object, Output: Landlord Doc", () => {
+        const payload = { fullname: "Sam Smith" };
+        let updateResponse: any;
+        let landlordDoc: any;
+
+        beforeAll(async () => {
+          updateResponse = await LandlordsService.updateLandlord(
+            landlordId,
+            payload
+          );
+          landlordDoc = await LandlordsService.getLandlordById(landlordId);
+        });
+
+        describe("updateResponse", () => {
+          test("property 'acknowledged = true'", () => {
+            expect(updateResponse).toHaveProperty("acknowledged", true);
+          });
+
+          test("property 'modifiedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("modifiedCount", 1);
+          });
+
+          test("property 'matchedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("matchedCount", 1);
+          });
+        });
+
+        describe("landlord document", () => {
+          test("name has been updated to 'Sam Smith'", () => {
+            expect(landlordDoc.fullname).toBe("Sam Smith");
+          });
+        });
       });
     });
 
-    describe("LandlordId doesnt exist", () => {
-      let payload: any;
-      let result: any;
-      let invalidId = "FFFFFFFFFFFFFFFFFFFFFFFF";
+    describe("Failure", () => {
+      describe("Input: Valid ID + Valid Object, Output: Error (Landlord Not Found)", () => {
+        const validId = "FFFFFFFFFFFFFFFFFFFFFFFF";
+        const payload = { fullname: "Ben Smith" };
+        let updateResponse: any;
+        let landlordDoc: any;
 
-      beforeAll(async () => {
-        payload = {
-          fullname: "Smith John",
+        beforeAll(async () => {
+          updateResponse = await LandlordsService.updateLandlord(
+            validId,
+            payload
+          );
+          landlordDoc = await LandlordsService.getLandlordById(landlordId);
+        });
+
+        describe("updateResponse", () => {
+          test("property 'acknowledged = true'", () => {
+            expect(updateResponse).toHaveProperty("acknowledged", true);
+          });
+
+          test("property 'modifiedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("modifiedCount", 0);
+          });
+
+          test("property 'matchedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("matchedCount", 0);
+          });
+        });
+
+        describe("landlord document", () => {
+          test("name has not been updated to 'Ben Smith'", () => {
+            expect(landlordDoc.fullname).not.toBe("Ben Smith");
+          });
+        });
+      });
+
+      describe("Input: Invalid ID + Valid Object, Output: Error (Invalid LandlordId)", () => {
+        const invalidId = "";
+        const payload = { fullname: "Dave Smith" };
+        let updateResponse: any;
+        let landlordDoc: any;
+        const testMethod = async () => {
+          updateResponse = await LandlordsService.updateLandlord(
+            invalidId,
+            payload
+          );
         };
-        result = await LandlordService.updateLandlord(invalidId, payload);
-      });
 
-      it("should return an object with property 'acknowleged' = true", () => {
-        expect(result).toHaveProperty("acknowledged", true);
-      });
-
-      it("should return an object with property 'modifiedCount' = 0", () => {
-        expect(result).toHaveProperty("modifiedCount", 0);
-      });
-
-      it("should return property 'matchedCount' = 0", () => {
-        expect(result).toHaveProperty("matchedCount", 0);
-      });
-    });
-
-    describe("Invalid LandlordId", () => {
-      let payload = { fullname: "J Smith" };
-      let result: any;
-      let id = "GGGGG";
-      const testMethod = async () => {
-        result = await LandlordService.updateLandlord(id, payload);
-      };
-
-      it("should throw API Error", () => {
-        expect(testMethod).rejects.toThrow(ApiError);
-      });
-
-      it("should have error message 'invalid-landlord-id'", () => {
-        expect(testMethod).rejects.toThrow(ApiErrorCodes.INVALID_LANDLORD_ID);
+        test("throws API Error", () => {
+          expect(testMethod).rejects.toThrow(
+            new ApiError(ApiErrorCodes.INVALID_LANDLORD_ID)
+          );
+        });
       });
     });
   });
