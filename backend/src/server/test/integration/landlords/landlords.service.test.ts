@@ -33,7 +33,7 @@ describe("LandlordsService", () => {
         let result: any;
 
         beforeAll(async () => {
-          result = await LandlordsService.createLandlord(testLandlord);
+          result = await LandlordsService.create(testLandlord);
           landlordId = result._id;
         });
 
@@ -65,7 +65,7 @@ describe("LandlordsService", () => {
           let result: any;
 
           const testMethod = async () => {
-            result = await LandlordsService.createLandlord(invalidLandlord);
+            result = await LandlordsService.create(invalidLandlord);
           };
 
           test("throws error", () => {
@@ -82,7 +82,7 @@ describe("LandlordsService", () => {
         let result: any;
 
         beforeAll(async () => {
-          result = await LandlordsService.getLandlords();
+          result = await LandlordsService.get();
         });
 
         test("returns array", () => {
@@ -106,7 +106,7 @@ describe("LandlordsService", () => {
         let result: any;
 
         beforeAll(async () => {
-          result = await LandlordsService.getLandlordById(landlordId);
+          result = await LandlordsService.getById(landlordId);
         });
 
         // valid id => Landlord document
@@ -122,7 +122,7 @@ describe("LandlordsService", () => {
         const validId = "FFFFFFFFFFFFFFFFFFFFFFFF";
 
         beforeAll(async () => {
-          result = await LandlordsService.getLandlordById(validId);
+          result = await LandlordsService.getById(validId);
         });
 
         // valid id => Landlord document
@@ -134,7 +134,7 @@ describe("LandlordsService", () => {
       describe("Input: Invalid ID, Output: Error (Invalid Landlord)", () => {
         let result: any;
         const testMethod = async (landlordId: string) => {
-          result = await LandlordsService.getLandlordById(landlordId);
+          result = await LandlordsService.getById(landlordId);
         };
 
         test("returns test Landlord", () => {
@@ -156,11 +156,8 @@ describe("LandlordsService", () => {
         let landlordDoc: any;
 
         beforeAll(async () => {
-          updateResponse = await LandlordsService.updateLandlord(
-            landlordId,
-            payload
-          );
-          landlordDoc = await LandlordsService.getLandlordById(landlordId);
+          updateResponse = await LandlordsService.update(landlordId, payload);
+          landlordDoc = await LandlordsService.getById(landlordId);
         });
 
         describe("updateResponse", () => {
@@ -193,11 +190,8 @@ describe("LandlordsService", () => {
         let landlordDoc: any;
 
         beforeAll(async () => {
-          updateResponse = await LandlordsService.updateLandlord(
-            validId,
-            payload
-          );
-          landlordDoc = await LandlordsService.getLandlordById(landlordId);
+          updateResponse = await LandlordsService.update(validId, payload);
+          landlordDoc = await LandlordsService.getById(landlordId);
         });
 
         describe("updateResponse", () => {
@@ -227,10 +221,7 @@ describe("LandlordsService", () => {
         let updateResponse: any;
         let landlordDoc: any;
         const testMethod = async () => {
-          updateResponse = await LandlordsService.updateLandlord(
-            invalidId,
-            payload
-          );
+          updateResponse = await LandlordsService.update(invalidId, payload);
         };
 
         test("throws API Error", () => {

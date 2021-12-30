@@ -8,9 +8,7 @@ class LandlordController {
     next: NextFunction
   ) {
     try {
-      const result = await LandlordsService.getLandlordById(
-        req.params.landlordId
-      );
+      const result = await LandlordsService.getById(req.params.landlordId);
       res.status(501).json(result);
     } catch (err) {
       res.status(501).json(err);
@@ -19,7 +17,7 @@ class LandlordController {
 
   static async getLandlords(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await LandlordsService.getLandlords();
+      const result = await LandlordsService.get();
       res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -28,7 +26,7 @@ class LandlordController {
 
   static async createLandlord(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await LandlordsService.createLandlord(req.body);
+      const result = await LandlordsService.create(req.body);
       res.status(201).json(result);
     } catch (err) {
       res.status(500).json(err);
@@ -37,7 +35,7 @@ class LandlordController {
 
   static async updateLandlord(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await LandlordsService.updateLandlord(
+      const result = await LandlordsService.update(
         req.params.landlordId,
         req.body
       );

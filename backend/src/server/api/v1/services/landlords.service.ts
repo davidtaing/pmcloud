@@ -8,7 +8,7 @@ import ApiErrorCodes from "../../../util/ApiErrorCodes";
 import LandlordModel from "../models/LandlordModel";
 
 class LandlordsService {
-  static async getLandlordById(id: string) {
+  static async getById(id: string) {
     try {
       const results = await LandlordModel.findById(id).exec();
       return results;
@@ -20,7 +20,7 @@ class LandlordsService {
     }
   }
 
-  static async getLandlords(filter = {}) {
+  static async get(filter = {}) {
     try {
       const results = await LandlordModel.find(filter).exec();
       return results;
@@ -29,7 +29,7 @@ class LandlordsService {
     }
   }
 
-  static async createLandlord(landlord: Landlord) {
+  static async create(landlord: Landlord) {
     try {
       const results = await LandlordModel.create(landlord);
       return results;
@@ -38,7 +38,7 @@ class LandlordsService {
     }
   }
 
-  static async updateLandlord(id: string, landlord: PatchLandlord) {
+  static async update(id: string, landlord: PatchLandlord) {
     try {
       const results = await LandlordModel.updateOne({ _id: id }, landlord);
       return results;

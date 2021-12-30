@@ -5,7 +5,7 @@ import {
 import TenantModel from "../models/TenantModel";
 
 class TenantsService {
-  static async getTenants(filter = {}) {
+  static async get(filter = {}) {
     try {
       return await TenantModel.find(filter).exec();
     } catch (err) {
@@ -13,7 +13,7 @@ class TenantsService {
     }
   }
 
-  static async getTenantById(id: string) {
+  static async getById(id: string) {
     try {
       return await TenantModel.findById(id).exec();
     } catch (err) {
@@ -21,7 +21,7 @@ class TenantsService {
     }
   }
 
-  static async createTenant(tenant: Tenant) {
+  static async create(tenant: Tenant) {
     try {
       return await TenantModel.create(tenant);
     } catch (err) {
@@ -29,7 +29,7 @@ class TenantsService {
     }
   }
 
-  static async updateTenant(id: string, doc: PatchTenant) {
+  static async update(id: string, doc: PatchTenant) {
     try {
       return await TenantModel.updateOne({ _id: id }, doc);
     } catch (err) {

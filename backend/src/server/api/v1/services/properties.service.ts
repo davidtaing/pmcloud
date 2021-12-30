@@ -5,7 +5,7 @@ import {
 import PropertyModel from "../models/PropertyModel";
 
 class PropertiesService {
-  static async getProperties(filter = {}) {
+  static async get(filter = {}) {
     try {
       return await PropertyModel.find(filter).exec();
     } catch (err) {
@@ -13,7 +13,7 @@ class PropertiesService {
     }
   }
 
-  static async getPropertyById(id: string) {
+  static async getById(id: string) {
     try {
       return await PropertyModel.findById(id).exec();
     } catch (err) {
@@ -21,7 +21,7 @@ class PropertiesService {
     }
   }
 
-  static async createProperty(property: Property) {
+  static async create(property: Property) {
     try {
       return await PropertyModel.create(property);
     } catch (err) {
@@ -29,7 +29,7 @@ class PropertiesService {
     }
   }
 
-  static async updateProperty(id: string, doc: PatchProperty) {
+  static async update(id: string, doc: PatchProperty) {
     try {
       return await PropertyModel.updateOne({ _id: id }, doc);
     } catch (err) {
