@@ -3,6 +3,9 @@ import {
   PatchTenant,
 } from "../../../../openapi/api/v1/components/schemas";
 import TenantModel from "../models/TenantModel";
+import { Error } from "mongoose";
+import ApiError from "../../../util/ApiError";
+import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
 class TenantsService {
   static async get(filter = {}) {
@@ -17,6 +20,9 @@ class TenantsService {
     try {
       return await TenantModel.findById(id).exec();
     } catch (err) {
+      if (err instanceof Error.CastError)
+        throw new ApiError(ApiErrorCodes.INVALID_TENANT_ID);
+
       throw err;
     }
   }
@@ -33,6 +39,9 @@ class TenantsService {
     try {
       return await TenantModel.updateOne({ _id: id }, doc);
     } catch (err) {
+      if (err instanceof Error.CastError)
+        throw new ApiError(ApiErrorCodes.INVALID_TENANT_ID);
+
       throw err;
     }
   }
