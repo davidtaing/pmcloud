@@ -3,15 +3,6 @@ import LandlordsService from "../../../api/v1/services/landlords.service";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
-beforeAll(async () => {
-  await TestDb.connectTestDatabase();
-});
-
-afterAll(async () => {
-  await TestDb.clearTestDatabase();
-  await TestDb.closeTestDatabase();
-});
-
 /**
  * @group integration
  */
@@ -26,6 +17,15 @@ describe("LandlordsService", () => {
       addressLn2: "Sydney NSW 2000",
     },
   };
+
+  beforeAll(async () => {
+    await TestDb.connectTestDatabase();
+  });
+
+  afterAll(async () => {
+    await TestDb.clearTestDatabase();
+    await TestDb.closeTestDatabase();
+  });
 
   describe("createLandlord", () => {
     describe("Success", () => {

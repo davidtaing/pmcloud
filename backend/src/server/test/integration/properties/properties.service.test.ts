@@ -1,19 +1,19 @@
 import TestDb from "../../util/testDb";
 import PropertiesService from "../../../api/v1/services/properties.service";
 
-beforeAll(async () => {
-  await TestDb.connectTestDatabase();
-});
-
-afterAll(async () => {
-  await TestDb.clearTestDatabase();
-  await TestDb.closeTestDatabase();
-});
-
 /**
  * @group integration
  */
 describe("PropertiesService", () => {
+  beforeAll(async () => {
+    await TestDb.connectTestDatabase();
+  });
+
+  afterAll(async () => {
+    await TestDb.clearTestDatabase();
+    await TestDb.closeTestDatabase();
+  });
+
   let propertyId: string;
   describe("createProperty", () => {
     test.todo("returns created landlord document");
