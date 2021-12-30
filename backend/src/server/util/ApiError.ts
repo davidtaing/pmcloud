@@ -1,9 +1,11 @@
+import ApiErrorCodes from "./ApiErrorCodes";
+
 class ApiError extends Error {
   name = "ApiError";
   code: string;
   date: Date;
 
-  constructor(code: string, ...params: any[]) {
+  constructor(code: ApiErrorCodes, ...params: any[]) {
     super(...params);
     this.code = code;
     this.message = code;
