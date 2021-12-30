@@ -825,8 +825,7 @@
         },
         "required": [
           "address",
-          "landlordId",
-          "tenantId"
+          "landlordId"
         ]
       },
       "PropertyResponse": {

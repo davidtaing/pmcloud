@@ -1,12 +1,36 @@
 import TestDb from "../../util/testDb";
 import PropertiesService from "../../../api/v1/services/properties.service";
+import LandlordsService from "../../../api/v1/services/landlords.service";
+import ApiError from "../../../util/ApiError";
+import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
 /**
  * @group integration
  */
 describe("PropertiesService", () => {
+  const testProperty = {
+    address: {
+      addressLn1: "500 Fake Rd",
+      addressLn2: "Sydney NSW 2000",
+    },
+    landlordId: "",
+  };
+  let propertyId: string;
+
   beforeAll(async () => {
     await TestDb.connectTestDatabase();
+    const testLandlord = {
+      fullname: "John Smith",
+      mobile: "0491570006",
+      email: "johnsmith@fake.com",
+      address: {
+        addressLn1: "123 Fake St",
+        addressLn2: "Sydney NSW 2000",
+      },
+    };
+
+    const landlord = await LandlordsService.create(testLandlord);
+    testProperty.landlordId = landlord._id;
   });
 
   afterAll(async () => {
@@ -14,27 +38,218 @@ describe("PropertiesService", () => {
     await TestDb.closeTestDatabase();
   });
 
-  let propertyId: string;
   describe("createProperty", () => {
-    test.todo("returns created landlord document");
+    describe("Success", () => {
+      describe("Input: Valid Object, Output: Property Document", () => {
+        let result: any;
+
+        beforeAll(async () => {
+          result = await PropertiesService.create(testProperty);
+          propertyId = result._id;
+        });
+
+        test("contains payload data", () => {
+          expect(result).toMatchObject(testProperty);
+        });
+
+        test("has added _id property", () => {
+          expect(result).toHaveProperty("_id");
+        });
+
+        test("has added __v property", () => {
+          expect(result).toHaveProperty("__v");
+        });
+      });
+
+      describe("Failure", () => {
+        describe("Input: Invalid Property Object, Output: API Error", () => {
+          let invalidProperty = {
+            address: {
+              addressLn1: "123 Fake St",
+              addressLn2: "Sydney NSW 2000",
+            },
+            landlordId: "",
+          };
+          let result: any;
+
+          const testMethod = async () => {
+            result = await PropertiesService.create(invalidProperty);
+          };
+
+          test("throws error", () => {
+            expect(testMethod).rejects.toThrow(Error);
+          });
+        });
+      });
+    });
   });
 
   describe("getProperties", () => {
-    test.todo("should return array containing one property");
-    test.todo("matches property from previous createProperty test");
+    describe("Success", () => {
+      describe("Input: None, Output: Properties[1]", () => {
+        let result: any;
+
+        beforeAll(async () => {
+          result = await PropertiesService.get();
+        });
+
+        test("returns array", () => {
+          expect(Array.isArray(result)).toBe(true);
+        });
+
+        test("array contains one element", () => {
+          expect(result).toHaveLength(1);
+        });
+
+        test("element is the same document from the createProperty test", () => {
+          expect(result[0]).toMatchObject(testProperty);
+        });
+      });
+    });
   });
 
   describe("getPropertyById", () => {
-    // valid id
-    test.todo("sucessfully finds property");
-    // invalid id
-    test.todo("property doesn't exist");
+    describe("Success", () => {
+      describe("Input: Valid ID, Output: Property Doc", () => {
+        let result: any;
+
+        beforeAll(async () => {
+          result = await PropertiesService.getById(propertyId);
+        });
+
+        test("returns test Property", () => {
+          expect(result).toMatchObject(testProperty);
+        });
+      });
+    });
+
+    describe("Failure", () => {
+      describe("Input: Valid ID, Output: Error (Property Not Found)", () => {
+        let result: any;
+        const validId = "FFFFFFFFFFFFFFFFFFFFFFFF";
+
+        beforeAll(async () => {
+          result = await PropertiesService.getById(validId);
+        });
+
+        test("returns null", () => {
+          expect(result).toBe(null);
+        });
+      });
+
+      describe("Input: Invalid ID, Output: Error (Invalid Property)", () => {
+        let result: any;
+        const invalidId = "";
+        const testMethod = async () => {
+          result = await PropertiesService.getById(invalidId);
+        };
+
+        test("throws API Error (Invalid Property Id)", () => {
+          expect(testMethod).rejects.toThrow(
+            new ApiError(ApiErrorCodes.INVALID_PROPERTY_ID)
+          );
+        });
+      });
+    });
   });
 
   describe("updateProperty", () => {
-    // valid id
-    test.todo("sucessfully updates property");
-    // invalid id
-    test.todo("property doesn't exist");
+    describe("Success", () => {
+      describe("Input: Valid ID + Valid Object, Output: Property Doc", () => {
+        const payload = {
+          address: {
+            addressLn1: "777 Fake Rd",
+            addressLn2: "Sydney NSW 2000",
+          },
+        };
+        let updateResponse: any;
+        let propertyDoc: any;
+
+        beforeAll(async () => {
+          updateResponse = await PropertiesService.update(propertyId, payload);
+          propertyDoc = await PropertiesService.getById(propertyId);
+        });
+
+        describe("updateResponse", () => {
+          test("property 'acknowledged = true'", () => {
+            expect(updateResponse).toHaveProperty("acknowledged", true);
+          });
+
+          test("property 'modifiedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("modifiedCount", 1);
+          });
+
+          test("property 'matchedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("matchedCount", 1);
+          });
+        });
+
+        describe("property document", () => {
+          test("addressLn1 has been updated to '777 Fake Rd'", () => {
+            expect(propertyDoc.address.addressLn1).toBe("777 Fake Rd");
+          });
+        });
+      });
+    });
+
+    describe("Failure", () => {
+      describe("Input: Valid ID + Valid Object, Output: Error (Property Not Found)", () => {
+        const validId = "FFFFFFFFFFFFFFFFFFFFFFFF";
+        const payload = {
+          address: {
+            addressLn1: "888 Fake Rd",
+            addressLn2: "Sydney NSW 2000",
+          },
+        };
+        let updateResponse: any;
+        let propertyDoc: any;
+
+        beforeAll(async () => {
+          updateResponse = await PropertiesService.update(validId, payload);
+          propertyDoc = await PropertiesService.getById(propertyId);
+        });
+
+        describe("updateResponse", () => {
+          test("property 'acknowledged = true'", () => {
+            expect(updateResponse).toHaveProperty("acknowledged", true);
+          });
+
+          test("property 'modifiedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("modifiedCount", 0);
+          });
+
+          test("property 'matchedCount = 1'", () => {
+            expect(updateResponse).toHaveProperty("matchedCount", 0);
+          });
+        });
+
+        describe("Property document", () => {
+          test("addressLn1 has been updated to '888 Fake Rd'", () => {
+            expect(propertyDoc.fullname).not.toBe("888 Fake Rd");
+          });
+        });
+      });
+
+      describe("Input: Invalid ID + Valid Object, Output: Error (Invalid PropertyId)", () => {
+        const invalidId = "";
+        const payload = {
+          address: {
+            addressLn1: "999 Fake Rd",
+            addressLn2: "Sydney NSW 2000",
+          },
+        };
+        let updateResponse: any;
+
+        const testMethod = async () => {
+          updateResponse = await PropertiesService.update(invalidId, payload);
+        };
+
+        test("throws API Error", () => {
+          expect(testMethod).rejects.toThrow(
+            new ApiError(ApiErrorCodes.INVALID_PROPERTY_ID)
+          );
+        });
+      });
+    });
   });
 });

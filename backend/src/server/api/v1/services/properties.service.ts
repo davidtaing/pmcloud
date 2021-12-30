@@ -3,6 +3,9 @@ import {
   PatchProperty,
 } from "../../../../openapi/api/v1/components/schemas";
 import PropertyModel from "../models/PropertyModel";
+import { Error } from "mongoose";
+import ApiError from "../../../util/ApiError";
+import ApiErrorCodes from "../../../util/ApiErrorCodes";
 
 class PropertiesService {
   static async get(filter = {}) {
@@ -17,6 +20,9 @@ class PropertiesService {
     try {
       return await PropertyModel.findById(id).exec();
     } catch (err) {
+      if (err instanceof Error.CastError)
+        throw new ApiError(ApiErrorCodes.INVALID_PROPERTY_ID);
+
       throw err;
     }
   }
@@ -33,6 +39,9 @@ class PropertiesService {
     try {
       return await PropertyModel.updateOne({ _id: id }, doc);
     } catch (err) {
+      if (err instanceof Error.CastError)
+        throw new ApiError(ApiErrorCodes.INVALID_PROPERTY_ID);
+
       throw err;
     }
   }
