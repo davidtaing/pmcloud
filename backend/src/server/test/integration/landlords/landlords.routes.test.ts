@@ -2,28 +2,28 @@ import app from "../../../app";
 import request from "supertest";
 import TestDb from "../../util/testDb";
 
-const testLandlord = {
-  fullname: "Test Smith",
-  mobile: "0491570006",
-  email: "testsmith@fake.com",
-  address: {
-    addressLn1: "123 Fake St",
-    addressLn2: "Sydney NSW 2000",
-  },
-};
-// is set by the POST /landlords
-let landlordId: string;
-
-beforeAll(async () => {
-  await TestDb.connectTestDatabase();
-});
-
-afterAll(async () => {
-  await TestDb.clearTestDatabase();
-  await TestDb.closeTestDatabase();
-});
-
 describe("/landlords", () => {
+  const testLandlord = {
+    fullname: "Test Smith",
+    mobile: "0491570006",
+    email: "testsmith@fake.com",
+    address: {
+      addressLn1: "123 Fake St",
+      addressLn2: "Sydney NSW 2000",
+    },
+  };
+  // is set by the POST /landlords
+  let landlordId: string;
+
+  beforeAll(async () => {
+    await TestDb.connectTestDatabase();
+  });
+
+  afterAll(async () => {
+    await TestDb.clearTestDatabase();
+    await TestDb.closeTestDatabase();
+  });
+
   describe("POST", () => {
     describe("201 - CREATED", () => {
       let res: any;
