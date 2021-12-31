@@ -2,17 +2,18 @@ import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 import validate from "../../../../middlewares/validate";
+import ReceiptsController from "../../controllers/receipts.controller";
 
 // Get Receipts
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
-  res.send(501).json("Not Yet Implemented");
+  ReceiptsController.getReceipts(req, res, next);
 };
 
 // Create Receipt
 const POST: Operation = [
   //validate(),
   (req: Request, res: Response, next: NextFunction) => {
-    res.send(501).json("Not Yet Implemented");
+    ReceiptsController.createReceipts(req, res, next);
   },
 ];
 

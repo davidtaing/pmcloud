@@ -2,12 +2,13 @@ import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 import validate from "../../../../middlewares/validate";
+import ReceiptsController from "../../controllers/receipts.controller";
 
 // Get Receipt
 const GET: Operation = [
   //validate(),
   (req: Request, res: Response, next: NextFunction) => {
-    res.send(501).json("Not Yet Implemented");
+    ReceiptsController.getReceiptById(req, res, next);
   },
 ];
 
