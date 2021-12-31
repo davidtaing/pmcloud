@@ -39,9 +39,8 @@ class LandlordController {
         req.params.landlordId,
         req.body
       );
-      res.status(501).json(result);
+      res.status(200).json(result);
     } catch (err) {
-      console.error(err);
       res.status(500).json(err);
     }
   }

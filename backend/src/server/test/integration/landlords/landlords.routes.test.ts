@@ -151,7 +151,22 @@ describe("/landlords/{landlordId}", () => {
   });
 
   describe("PATCH", () => {
-    test.todo("200 - OK");
+    describe("200 - OK", () => {
+      let res: any;
+      const payload = { fullname: "PATCH Smith" };
+
+      beforeAll(async () => {
+        res = await request(app)
+          .patch(`/landlords/${landlordId}`)
+          .send(payload)
+          .set("Accept", "application/json");
+      });
+
+      test("status is 200", () => {
+        expect(res.status).toBe(200);
+      });
+    });
+
     describe("400 - Bad Request", () => {
       let res: any;
       const payload = {};

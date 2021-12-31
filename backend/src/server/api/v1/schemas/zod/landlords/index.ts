@@ -27,7 +27,7 @@ export const UpdateZodSchema = z.object({
     phone: z.string().length(10).optional(),
     mobile: z.string().length(10).optional(),
     email: z.string().email().optional(),
-    address: AddressZodSchema,
+    address: AddressZodSchema.optional(),
   }),
   params: z.object({
     landlordId: IdZodSchema,
