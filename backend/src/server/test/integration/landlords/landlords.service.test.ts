@@ -37,7 +37,6 @@ describe("LandlordsService", () => {
           landlordId = result._id;
         });
 
-        // valid object => Landlord document
         test("contains payload data", () => {
           expect(result).toMatchObject(testLandlord);
         });
@@ -109,7 +108,6 @@ describe("LandlordsService", () => {
           result = await LandlordsService.getById(landlordId);
         });
 
-        // valid id => Landlord document
         test("returns test Landlord", () => {
           expect(result).toMatchObject(testLandlord);
         });
@@ -125,7 +123,6 @@ describe("LandlordsService", () => {
           result = await LandlordsService.getById(validId);
         });
 
-        // valid id => Landlord document
         test("returns test Landlord", () => {
           expect(result).toBe(null);
         });
