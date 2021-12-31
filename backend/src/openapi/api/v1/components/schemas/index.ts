@@ -6,6 +6,8 @@ import Tenant from "./Tenant";
 import PatchTenant from "./PatchTenant";
 import Property from "./Property";
 import PatchProperty from "./PatchProperty";
+import Tranasction from "./Transaction";
+import Receipt from "./Receipt";
 
 export type {
   Address,
@@ -16,4 +18,6 @@ export type {
   PatchTenant,
   Property,
   PatchProperty,
+  Tranasction,
+  Receipt,
 };
