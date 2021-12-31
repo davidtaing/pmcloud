@@ -3,12 +3,14 @@ import { z } from "zod";
 import IdZodSchema from "../IdZodSchema";
 import AddressZodSchema from "../AddressZodSchema";
 
+const Property = z.object({
+  address: AddressZodSchema,
+  landlordId: IdZodSchema,
+  tenantId: IdZodSchema.optional(),
+});
+
 export const CreateZodSchema = z.object({
-  body: z.object({
-    address: AddressZodSchema,
-    landlordId: IdZodSchema,
-    tenantId: IdZodSchema.optional(),
-  }),
+  body: Property,
 });
 
 export const GetByIdZodSchema = z.object({
@@ -18,10 +20,7 @@ export const GetByIdZodSchema = z.object({
 });
 
 export const UpdateZodSchema = z.object({
-  body: z.object({
-    address: AddressZodSchema.optional(),
-    tenantId: IdZodSchema.optional(),
-  }),
+  body: Property.omit({ tenantId: true }).deepPartial(),
   params: z.object({
     propertyId: IdZodSchema,
   }),

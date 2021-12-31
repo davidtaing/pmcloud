@@ -3,15 +3,17 @@ import { z } from "zod";
 import IdZodSchema from "../IdZodSchema";
 import AddressZodSchema from "../AddressZodSchema";
 
+const Landlord = z.object({
+  propertyId: IdZodSchema.optional(),
+  fullname: z.string().nonempty(),
+  phone: z.string().length(10).optional(),
+  mobile: z.string().length(10),
+  email: z.string().email(),
+  address: AddressZodSchema,
+});
+
 export const CreateZodSchema = z.object({
-  body: z.object({
-    propertyId: IdZodSchema.optional(),
-    fullname: z.string().nonempty(),
-    phone: z.string().length(10).optional(),
-    mobile: z.string().length(10),
-    email: z.string().email(),
-    address: AddressZodSchema,
-  }),
+  body: Landlord,
 });
 
 export const GetByIdZodSchema = z.object({
@@ -21,14 +23,7 @@ export const GetByIdZodSchema = z.object({
 });
 
 export const UpdateZodSchema = z.object({
-  body: z.object({
-    propertyId: IdZodSchema.optional(),
-    fullname: z.string().nonempty().optional(),
-    phone: z.string().length(10).optional(),
-    mobile: z.string().length(10).optional(),
-    email: z.string().email().optional(),
-    address: AddressZodSchema.optional(),
-  }),
+  body: Landlord.deepPartial(),
   params: z.object({
     landlordId: IdZodSchema,
   }),
