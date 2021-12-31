@@ -81,7 +81,28 @@ describe("/landlords", () => {
   });
 
   describe("GET", () => {
-    test.todo("200 - OK");
+    describe("200 - OK", () => {
+      let res: any;
+
+      beforeAll(async () => {
+        res = await request(app)
+          .get("/landlords")
+          .set("Accept", "application/json");
+      });
+
+      test("status is 200", () => {
+        expect(res.status).toBe(200);
+      });
+
+      test("responds with array", () => {
+        expect(Array.isArray(res.body)).toBe(true);
+      });
+
+      test("element matches previously created landlord", () => {
+        expect(res.body[0]).toMatchObject(testLandlord);
+      });
+    });
+
     test.todo("403 - Forbidden");
     test.todo("500 - Internal Server Error");
   });
