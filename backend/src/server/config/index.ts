@@ -4,6 +4,8 @@ dotenv.config({ path: path.join(__dirname, "../../../.env") });
 
 const getMongoUrl = () => {
   switch (process.env.NODE_ENV) {
+    case "test":
+      return process.env.MONGO_TEST_URL;
     case "production":
       return process.env.MONGO_PROD_URL;
     case "development":

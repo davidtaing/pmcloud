@@ -1,14 +1,19 @@
 import mongoose from "mongoose";
-import { MongoUrl } from "../../config";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
 class TestDb {
+  static mongod: MongoMemoryServer;
+
   static async connectTestDatabase() {
-    await mongoose.connect(MongoUrl);
+    this.mongod = await MongoMemoryServer.create();
+    const uri = this.mongod.getUri();
+    await mongoose.connect(uri);
   }
 
   static async closeTestDatabase() {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
+    await this.mongod.stop();
   }
 
   static async clearTestDatabase() {

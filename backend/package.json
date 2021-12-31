@@ -10,11 +10,11 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "build:openapi": "npx @airtasker/spot generate --contract src/openapi/api/v1/api.ts --language json --generator openapi3 --out src/server/api/v1/",
-    "test": "jest --maxWorkers=50%",
+    "test": "npm run test:unit && npm run test:integration",
     "test:watch": "jest --watchAll --maxWorkers=50%",
     "test:debug": "jest --detectOpenHandles --maxWorkers=50%",
     "test:unit": "jest --group=unit --maxWorkers=50%",
-    "test:integration": "jest --group=integration --maxWorkers=50%"
+    "test:integration": "jest --group=integration --runInBand "
   },
   "author": "David Taing <adavidtaing@gmail.com>",
   "license": "ISC",
