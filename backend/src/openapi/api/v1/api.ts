@@ -3,6 +3,7 @@ import { api } from "@airtasker/spot";
 import "./paths/landlords";
 import "./paths/tenants";
 import "./paths/properties";
+import "./paths/receipts";
 
 @api({
   name: "pmcloud Backend API",

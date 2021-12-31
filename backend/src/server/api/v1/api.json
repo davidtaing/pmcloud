@@ -655,6 +655,155 @@
           }
         }
       }
+    },
+    "/receipts": {
+      "get": {
+        "tags": [
+          "Receipts"
+        ],
+        "operationId": "GetReceipts",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Receipts"
+        ],
+        "operationId": "CreateReceipt",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReceiptRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "201 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/receipts/{receiptId}": {
+      "get": {
+        "tags": [
+          "Receipts"
+        ],
+        "operationId": "GetReceiptById",
+        "parameters": [
+          {
+            "name": "receiptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReceiptListResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -853,6 +1002,107 @@
       },
       "PatchPropertyRequest": {
         "$ref": "#/components/schemas/PatchProperty"
+      },
+      "Receipt": {
+        "type": "object",
+        "properties": {
+          "paidFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "paidTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "balance": {
+            "type": "number",
+            "format": "float"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "credit": {
+            "type": "number",
+            "format": "float"
+          },
+          "debit": {
+            "type": "number",
+            "format": "float"
+          },
+          "tenant": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string"
+              },
+              "fullname": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "_id",
+              "fullname"
+            ]
+          },
+          "property": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "addressLn1": {
+                    "type": "string"
+                  },
+                  "addressLn2": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "addressLn1",
+                  "addressLn2"
+                ]
+              }
+            },
+            "required": [
+              "_id",
+              "address"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "paidFrom",
+          "paidTo",
+          "balance",
+          "date",
+          "credit",
+          "debit",
+          "tenant",
+          "property",
+          "category",
+          "description"
+        ]
+      },
+      "ReceiptResponse": {
+        "$ref": "#/components/schemas/Receipt"
+      },
+      "ReceiptListResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Receipt"
+        }
+      },
+      "CreateReceiptRequest": {
+        "$ref": "#/components/schemas/Receipt"
       }
     }
   }
