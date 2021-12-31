@@ -168,18 +168,24 @@ describe("/landlords/{landlordId}", () => {
     });
 
     describe("400 - Bad Request", () => {
-      let res: any;
-      const payload = {};
+      describe("Input: Undefined Payload", () => {
+        let res: any;
+        const payload = undefined;
 
-      beforeAll(async () => {
-        res = await request(app)
-          .patch(`/landlords/${landlordId}`)
-          .send(payload)
-          .set("Accept", "application/json");
+        beforeAll(async () => {
+          res = await request(app)
+            .patch(`/landlords/${landlordId}`)
+            .send(payload)
+            .set("Accept", "application/json");
+        });
+
+        test("status is 400", () => {
+          expect(res.status).toBe(400);
+        });
       });
 
-      test("status is 400", () => {
-        expect(res.status).toBe(400);
+      describe("Input: Empty Payload", () => {
+        test.todo("status is 400");
       });
     });
 
