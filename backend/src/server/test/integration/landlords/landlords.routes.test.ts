@@ -23,6 +23,9 @@ afterAll(async () => {
   await TestDb.closeTestDatabase();
 });
 
+/**
+ * @group integration
+ */
 describe("/landlords", () => {
   describe("POST", () => {
     describe("201 - CREATED", () => {
@@ -112,6 +115,9 @@ describe("/landlords", () => {
   });
 });
 
+/**
+ * @group integration
+ */
 describe("/landlords/{landlordId}", () => {
   describe("GET", () => {
     describe("200 - OK", () => {
