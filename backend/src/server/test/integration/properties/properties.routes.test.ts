@@ -10,7 +10,7 @@ const testProperty = {
   },
   landlordId: "",
 };
-// is set by the POST /landlords
+// is set by the POST /properties
 let propertyId: string;
 
 beforeAll(async () => {
