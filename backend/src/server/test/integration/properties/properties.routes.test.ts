@@ -50,7 +50,7 @@ describe("/properties", () => {
     });
 
     describe("400 - Bad Request", () => {
-      describe("Empty landlordId property", () => {
+      describe("Input: Empty landlordId Property", () => {
         let res: any;
 
         beforeAll(async () => {

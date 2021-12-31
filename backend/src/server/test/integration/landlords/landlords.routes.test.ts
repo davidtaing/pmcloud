@@ -50,7 +50,7 @@ describe("/landlords", () => {
     });
 
     describe("400 - Bad Request", () => {
-      describe("Empty fullname property", () => {
+      describe("Input: Empty Fullname Property", () => {
         let res: any;
 
         beforeAll(async () => {
@@ -65,7 +65,7 @@ describe("/landlords", () => {
         });
       });
 
-      describe("Missing email property", () => {
+      describe("Input: Missing Email Property", () => {
         let res: any;
 
         beforeAll(async () => {

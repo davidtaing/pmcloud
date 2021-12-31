@@ -52,7 +52,7 @@ describe("/tenants", () => {
     });
 
     describe("400 - Bad Request", () => {
-      describe("Empty fullname property", () => {
+      describe("Input: Empty Fullname Property", () => {
         let res: any;
 
         beforeAll(async () => {
