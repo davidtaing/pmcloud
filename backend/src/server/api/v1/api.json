@@ -705,7 +705,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateReceiptRequest"
+                "$ref": "#/components/schemas/CreateReceiptsRequest"
               }
             }
           },
@@ -1101,8 +1101,11 @@
           "$ref": "#/components/schemas/Receipt"
         }
       },
-      "CreateReceiptRequest": {
-        "$ref": "#/components/schemas/Receipt"
+      "CreateReceiptsRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Receipt"
+        }
       }
     }
   }

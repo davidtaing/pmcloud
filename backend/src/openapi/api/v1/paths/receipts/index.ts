@@ -39,7 +39,7 @@ class GetReceiptById {
 })
 class CreateReceipt {
   @request
-  request(@body body: CreateReceiptRequest) {}
+  request(@body body: CreateReceiptsRequest) {}
 
   @response({ status: 201 })
   successfulResponse(@body body: ReceiptResponse) {}
@@ -51,6 +51,6 @@ class CreateReceipt {
   internalServerErrorResponse(@body body: ErrorBody) {}
 }
 
-type CreateReceiptRequest = Receipt;
+type CreateReceiptsRequest = Array<Receipt>;
 type ReceiptResponse = Receipt;
 type ReceiptListResponse = Array<Receipt>;
