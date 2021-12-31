@@ -11,6 +11,8 @@ const testLandlord = {
     addressLn2: "Sydney NSW 2000",
   },
 };
+// is set by the POST /landlords
+let landlordId: string;
 
 beforeAll(async () => {
   await TestDb.connectTestDatabase();
@@ -31,6 +33,8 @@ describe("/landlords", () => {
           .post("/landlords")
           .set("Accept", "application/json")
           .send(testLandlord);
+
+        landlordId = res.body._id;
       });
 
       test("status is 201", () => {
@@ -110,7 +114,24 @@ describe("/landlords", () => {
 
 describe("/landlords/{landlordId}", () => {
   describe("GET", () => {
-    test.todo("200 - OK");
+    describe("200 - OK", () => {
+      let res: any;
+
+      beforeAll(async () => {
+        res = await request(app)
+          .get(`/landlords/${landlordId}`)
+          .set("Accept", "application/json");
+      });
+
+      test("status is 200", () => {
+        expect(res.status).toBe(200);
+      });
+
+      test("element matches previously created landlord", () => {
+        expect(res.body).toMatchObject(testLandlord);
+      });
+    });
+
     test.todo("400 - Bad Request");
     test.todo("403 - Forbidden");
     test.todo("500 - Internal Server Error");

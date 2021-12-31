@@ -9,7 +9,7 @@ class LandlordController {
   ) {
     try {
       const result = await LandlordsService.getById(req.params.landlordId);
-      res.status(501).json(result);
+      res.status(200).json(result);
     } catch (err) {
       res.status(501).json(err);
     }
