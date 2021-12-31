@@ -42,7 +42,40 @@ describe("/landlords", () => {
       });
     });
 
-    test.todo("400 - Bad Request");
+    describe("400 - Bad Request", () => {
+      describe("Empty fullname property", () => {
+        let res: any;
+
+        beforeAll(async () => {
+          res = await request(app)
+            .post("/landlords")
+            .set("Accept", "application/json")
+            .send({ ...testLandlord, fullname: "" });
+        });
+
+        test("status is 400", () => {
+          expect(res.status).toBe(400);
+        });
+      });
+
+      describe("Missing email property", () => {
+        let res: any;
+
+        beforeAll(async () => {
+          const { email, ...otherLandlordProps }: any = testLandlord;
+
+          res = await request(app)
+            .post("/landlords")
+            .set("Accept", "application/json")
+            .send({ ...otherLandlordProps });
+        });
+
+        test("status is 400", () => {
+          expect(res.status).toBe(400);
+        });
+      });
+    });
+
     test.todo("403 - Forbidden");
     test.todo("500 - Internal Server Error");
   });
