@@ -152,7 +152,22 @@ describe("/landlords/{landlordId}", () => {
 
   describe("PATCH", () => {
     test.todo("200 - OK");
-    test.todo("400 - Bad Request");
+    describe("400 - Bad Request", () => {
+      let res: any;
+      const payload = {};
+
+      beforeAll(async () => {
+        res = await request(app)
+          .patch(`/landlords/${landlordId}`)
+          .send(payload)
+          .set("Accept", "application/json");
+      });
+
+      test("status is 400", () => {
+        expect(res.status).toBe(400);
+      });
+    });
+
     test.todo("403 - Forbidden");
     test.todo("500 - Internal Server Error");
   });
