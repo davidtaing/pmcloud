@@ -1,10 +1,12 @@
+import { String } from "@airtasker/spot";
+
 // For PATCH Requests which don't require all properties to be sent
 interface PatchTenant {
-  propertyId?: string;
-  fullname?: string;
-  phone?: string;
-  mobile?: string;
-  email?: string;
+  propertyId?: String;
+  fullname?: String;
+  phone?: String;
+  mobile?: String;
+  email?: String;
 }
 
 export default PatchTenant;

@@ -1,5 +1,7 @@
+import { String } from "@airtasker/spot";
+
 interface ErrorBody {
-  message: string;
+  message: String;
 }
 
 export default ErrorBody;

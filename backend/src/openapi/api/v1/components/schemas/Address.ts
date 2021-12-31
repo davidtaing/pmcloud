@@ -1,6 +1,8 @@
+import { String } from "@airtasker/spot";
+
 interface Address {
-  addressLn1?: string;
-  addressLn2?: string;
+  addressLn1?: String;
+  addressLn2?: String;
 }
 
 export default Address;
