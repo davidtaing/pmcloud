@@ -2,13 +2,14 @@
 import { z } from "zod";
 import IdZodSchema from "./id.zod";
 import AddressZodSchema from "./address.zod";
+import PhoneZodSchema from "./phone.zod";
 
 class LandlordZod {
   static LandlordSchema = z.object({
     propertyId: IdZodSchema.optional(),
     fullname: z.string().nonempty(),
-    phone: z.string().length(10).optional(),
-    mobile: z.string().length(10),
+    phone: PhoneZodSchema.optional(),
+    mobile: PhoneZodSchema,
     email: z.string().email(),
     address: AddressZodSchema,
   });
