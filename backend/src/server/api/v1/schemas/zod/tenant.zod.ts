@@ -4,7 +4,7 @@ import IdZodSchema from "./id.zod";
 import PhoneZodSchema from "./phone.zod";
 
 class TenantZod {
-  static Tenant = z.object({
+  static TenantSchema = z.object({
     propertyId: IdZodSchema.optional(),
     fullname: z.string().nonempty(),
     phone: PhoneZodSchema.optional(),
@@ -12,7 +12,7 @@ class TenantZod {
     email: z.string().email(),
   });
   static CreateZodSchema = z.object({
-    body: this.Tenant,
+    body: this.TenantSchema,
   });
 
   static GetByIdZodSchema = z.object({
@@ -22,7 +22,7 @@ class TenantZod {
   });
 
   static UpdateZodSchema = z.object({
-    body: this.Tenant.deepPartial(),
+    body: this.TenantSchema.deepPartial(),
     params: z.object({
       tenantId: IdZodSchema,
     }),
