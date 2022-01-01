@@ -1,6 +1,6 @@
 import { Schema, Types } from "mongoose";
-import LandlordDocument from "../documents/LandlordDocument";
-import AddressSchema from "./AddressSchema";
+import LandlordDocument from "../documents/landlord.document";
+import AddressSchema from "./address.schema";
 
 const LandlordSchema = new Schema<LandlordDocument>({
   propertyId: Types.ObjectId,

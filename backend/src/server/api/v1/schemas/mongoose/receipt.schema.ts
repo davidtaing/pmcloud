@@ -1,5 +1,5 @@
 import { Schema, Types, Date } from "mongoose";
-import ReceiptDocument from "../documents/ReceiptDocument";
+import ReceiptDocument from "../documents/receipt.document";
 
 const ReceiptSchema = new Schema<ReceiptDocument>({
   date: { type: Date, required: true },

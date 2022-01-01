@@ -2,12 +2,12 @@ import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
 import LandlordController from "../../controllers/landlords.controller";
-import validate from "../../../../middlewares/validate";
-import { GetByIdZodSchema, UpdateZodSchema } from "../../schemas/zod/landlords";
+import validateInput from "../../../../middlewares/validateInput";
+import LandlordZod from "../../schemas/zod/landlord.zod";
 
 // Get Landlord
 const GET: Operation = [
-  validate(GetByIdZodSchema),
+  validateInput(LandlordZod.GetByIdSchema),
   (req: Request, res: Response, next: NextFunction) => {
     LandlordController.getLandlordById(req, res, next);
   },
@@ -15,7 +15,7 @@ const GET: Operation = [
 
 // Update Landlord
 const PATCH: Operation = [
-  validate(UpdateZodSchema),
+  validateInput(LandlordZod.UpdateSchema),
   (req: Request, res: Response, next: NextFunction) => {
     LandlordController.updateLandlord(req, res, next);
   },
@@ -27,3 +27,4 @@ PATCH.apiDoc = paths["/landlords/{landlordId}"]?.patch;
 const operations = () => ({ GET, PATCH });
 
 export default operations;
+``;

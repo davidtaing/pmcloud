@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
-import validate from "../../../../middlewares/validate";
-import { GetByIdZodSchema, UpdateZodSchema } from "../../schemas/zod/tenants";
+import validateInput from "../../../../middlewares/validateInput";
 import TenantsController from "../../controllers/tenants.controller";
+import TenantZod from "../../schemas/zod/tenant.zod";
 
 // Get Tenant
 const GET: Operation = [
-  validate(GetByIdZodSchema),
+  validateInput(TenantZod.GetByIdZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
     TenantsController.getTenantById(req, res, next);
   },
@@ -15,7 +15,7 @@ const GET: Operation = [
 
 // Update Tenant
 const PATCH: Operation = [
-  validate(UpdateZodSchema),
+  validateInput(TenantZod.UpdateZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
     TenantsController.updateTenant(req, res, next);
   },

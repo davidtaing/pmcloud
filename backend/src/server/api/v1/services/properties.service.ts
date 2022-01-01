@@ -2,7 +2,7 @@ import {
   Property,
   PatchProperty,
 } from "../../../../openapi/api/v1/components/schemas";
-import PropertyModel from "../models/PropertyModel";
+import PropertyModel from "../models/property.model";
 import { Error } from "mongoose";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";

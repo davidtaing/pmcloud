@@ -5,7 +5,7 @@ import {
 } from "../../../../openapi/api/v1/components/schemas";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";
-import LandlordModel from "../models/LandlordModel";
+import LandlordModel from "../models/landlord.model";
 
 class LandlordsService {
   static async getById(id: string) {

@@ -1,6 +1,6 @@
 import { model } from "mongoose";
 
-import LandlordSchema from "../schemas/mongoose/LandlordSchema";
+import LandlordSchema from "../schemas/mongoose/landlord.schema";
 
 const LandlordModel = model("Landlord", LandlordSchema);
 

@@ -2,7 +2,7 @@ import {
   Tenant,
   PatchTenant,
 } from "../../../../openapi/api/v1/components/schemas";
-import TenantModel from "../models/TenantModel";
+import TenantModel from "../models/tenant.model";
 import { Error } from "mongoose";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";

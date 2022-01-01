@@ -1,6 +1,6 @@
 import { Schema, Types } from "mongoose";
-import PropertyDocument from "../documents/PropertyDocument";
-import AddressSchema from "./AddressSchema";
+import PropertyDocument from "../documents/property.document";
+import AddressSchema from "./address.schema";
 
 const PropertySchema = new Schema<PropertyDocument>({
   address: AddressSchema,

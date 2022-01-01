@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
-import validate from "../../../../middlewares/validate";
+import validateInput from "../../../../middlewares/validateInput";
 import ReceiptsController from "../../controllers/receipts.controller";
 
 // Get Receipts
@@ -11,7 +11,7 @@ const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
 
 // Create Receipt
 const POST: Operation = [
-  //validate(),
+  //validateInput(),
   (req: Request, res: Response, next: NextFunction) => {
     ReceiptsController.createReceipts(req, res, next);
   },

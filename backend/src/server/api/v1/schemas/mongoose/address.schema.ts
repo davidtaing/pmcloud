@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import AddressDocument from "../documents/AddressDocument";
+import AddressDocument from "../documents/address.document";
 
 const AddressSchema = new Schema<AddressDocument>({
   addressLn1: { type: String, required: true },

@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
-import validate from "../../../../middlewares/validate";
-import { CreateZodSchema } from "../../schemas/zod/tenants";
+import validateInput from "../../../../middlewares/validateInput";
 import TenantsController from "../../controllers/tenants.controller";
+import TenantZod from "../../schemas/zod/tenant.zod";
 
 // Get Tenants
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
@@ -12,7 +12,7 @@ const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
 
 // Create Tenant
 const POST: Operation = [
-  validate(CreateZodSchema),
+  validateInput(TenantZod.CreateZodSchema),
   (req: Request, res: Response, next: NextFunction) => {
     TenantsController.createTenant(req, res, next);
   },

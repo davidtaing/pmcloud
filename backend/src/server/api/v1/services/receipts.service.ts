@@ -1,5 +1,5 @@
 import { Receipt } from "../../../../openapi/api/v1/components/schemas";
-import ReceiptModel from "../models/ReceiptModel";
+import ReceiptModel from "../models/receipt.model";
 import { Error } from "mongoose";
 import ApiError from "../../../util/ApiError";
 import ApiErrorCodes from "../../../util/ApiErrorCodes";

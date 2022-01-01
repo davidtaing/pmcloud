@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { paths } from "../../api-doc";
 import { Operation } from "express-openapi";
-import validate from "../../../../middlewares/validate";
-import { CreateZodSchema } from "../../schemas/zod/properties";
+import validateInput from "../../../../middlewares/validateInput";
 import PropertiesController from "../../controllers/properties.controller";
+import PropertyZod from "../../schemas/zod/property.zod";
 
 // Get Properties
 const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
@@ -11,7 +11,7 @@ const GET: Operation = (req: Request, res: Response, next: NextFunction) => {
 };
 // Create Property
 const POST: Operation = [
-  validate(CreateZodSchema),
+  validateInput(PropertyZod.CreateSchema),
   (req: Request, res: Response, next: NextFunction) => {
     PropertiesController.createProperty(req, res, next);
   },
