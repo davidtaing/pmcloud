@@ -13,8 +13,10 @@ describe("LandlordsService", () => {
     mobile: "0491570006",
     email: "johnsmith@fake.com",
     address: {
-      addressLn1: "123 Fake St",
-      addressLn2: "Sydney NSW 2000",
+      addressLn2: "123 Fake St",
+      suburb: "Sydney",
+      state: "NSW",
+      postcode: "2000",
     },
   };
 
@@ -57,8 +59,10 @@ describe("LandlordsService", () => {
             mobile: "",
             email: "johnsmith@fake.com",
             address: {
-              addressLn1: "123 Fake St",
-              addressLn2: "Sydney NSW 2000",
+              addressLn2: "123 Fake St",
+              suburb: "Sydney",
+              state: "NSW",
+              postcode: "2000",
             },
           };
           let result: any;

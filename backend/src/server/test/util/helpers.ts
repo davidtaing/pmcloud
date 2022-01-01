@@ -8,8 +8,10 @@ class Helpers {
       mobile: "0491570006",
       email: "johnsmith@fake.com",
       address: {
-        addressLn1: "123 Fake St",
-        addressLn2: "Sydney NSW 2000",
+        addressLn2: "123 Fake St",
+        suburb: "Sydney",
+        state: "NSW",
+        postcode: "2000",
       },
     };
 
@@ -19,8 +21,10 @@ class Helpers {
   static async createProperty(landlordId: string) {
     const testProperty = {
       address: {
-        addressLn1: "500 Fake Rd",
-        addressLn2: "Sydney NSW 2000",
+        addressLn2: "500 Fake Rd",
+        suburb: "Sydney",
+        state: "NSW",
+        postcode: "2000",
       },
       landlordId: landlordId,
     };

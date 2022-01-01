@@ -816,8 +816,23 @@
           },
           "addressLn2": {
             "type": "string"
+          },
+          "suburb": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "postcode": {
+            "type": "string"
           }
-        }
+        },
+        "required": [
+          "addressLn2",
+          "suburb",
+          "state",
+          "postcode"
+        ]
       },
       "Landlord": {
         "type": "object",

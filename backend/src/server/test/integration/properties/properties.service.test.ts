@@ -10,8 +10,10 @@ import Helpers from "../../util/helpers";
 describe("PropertiesService", () => {
   const testProperty = {
     address: {
-      addressLn1: "500 Fake Rd",
-      addressLn2: "Sydney NSW 2000",
+      addressLn2: "500 Fake Rd",
+      suburb: "Sydney",
+      state: "NSW",
+      postcode: "2000",
     },
     landlordId: "",
   };
@@ -54,8 +56,10 @@ describe("PropertiesService", () => {
         describe("Input: Invalid Property Object, Output: API Error", () => {
           let invalidProperty = {
             address: {
-              addressLn1: "123 Fake St",
-              addressLn2: "Sydney NSW 2000",
+              addressLn2: "123 Fake St",
+              suburb: "Sydney",
+              state: "NSW",
+              postcode: "2000",
             },
             landlordId: "",
           };
@@ -147,8 +151,10 @@ describe("PropertiesService", () => {
       describe("Input: Valid ID + Valid Object, Output: Property Doc", () => {
         const payload = {
           address: {
-            addressLn1: "777 Fake Rd",
-            addressLn2: "Sydney NSW 2000",
+            addressLn2: "777 Fake Rd",
+            suburb: "Sydney",
+            state: "NSW",
+            postcode: "2000",
           },
         };
         let updateResponse: any;
@@ -175,7 +181,7 @@ describe("PropertiesService", () => {
 
         describe("property document", () => {
           test("addressLn1 has been updated to '777 Fake Rd'", () => {
-            expect(propertyDoc.address.addressLn1).toBe("777 Fake Rd");
+            expect(propertyDoc.address.addressLn2).toBe("777 Fake Rd");
           });
         });
       });
@@ -186,8 +192,10 @@ describe("PropertiesService", () => {
         const validId = "FFFFFFFFFFFFFFFFFFFFFFFF";
         const payload = {
           address: {
-            addressLn1: "888 Fake Rd",
-            addressLn2: "Sydney NSW 2000",
+            addressLn2: "888 Fake Rd",
+            suburb: "Sydney",
+            state: "NSW",
+            postcode: "2000",
           },
         };
         let updateResponse: any;
@@ -213,8 +221,8 @@ describe("PropertiesService", () => {
         });
 
         describe("Property document", () => {
-          test("addressLn1 has been updated to '888 Fake Rd'", () => {
-            expect(propertyDoc.fullname).not.toBe("888 Fake Rd");
+          test("addressLn2 has been updated to '888 Fake Rd'", () => {
+            expect(propertyDoc.addressLn2).not.toBe("888 Fake Rd");
           });
         });
       });
@@ -223,8 +231,10 @@ describe("PropertiesService", () => {
         const invalidId = "";
         const payload = {
           address: {
-            addressLn1: "999 Fake Rd",
-            addressLn2: "Sydney NSW 2000",
+            addressLn2: "999 Fake Rd",
+            suburb: "Sydney",
+            state: "NSW",
+            postcode: "2000",
           },
         };
         let updateResponse: any;

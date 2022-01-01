@@ -5,8 +5,10 @@ import Helpers from "../../util/helpers";
 
 const testProperty = {
   address: {
-    addressLn1: "111 Elizaneth St",
-    addressLn2: "Sydney NSW 2000",
+    addressLn2: "111 Elizaneth St",
+    suburb: "Sydney",
+    state: "NSW",
+    postcode: "2000",
   },
   landlordId: "",
 };
@@ -116,7 +118,7 @@ describe("/properties/{propertyId}", () => {
         expect(res.status).toBe(200);
       });
 
-      test("element matches previously created landlord", () => {
+      test("element matches previously created property", () => {
         expect(res.body).toMatchObject(testProperty);
       });
     });
@@ -143,8 +145,10 @@ describe("/properties/{propertyId}", () => {
       let res: any;
       const payload = {
         address: {
-          addressLn1: "555 Elizaneth St",
-          addressLn2: "Sydney NSW 2000",
+          addressLn2: "555 Elizaneth St",
+          suburb: "Sydney",
+          state: "NSW",
+          postcode: "2000",
         },
       };
 
