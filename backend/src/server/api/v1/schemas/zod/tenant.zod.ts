@@ -2,17 +2,16 @@
 import { z } from "zod";
 import IdZodSchema from "./id.zod";
 
-const Tenant = z.object({
-  propertyId: IdZodSchema.optional(),
-  fullname: z.string().nonempty(),
-  phone: z.string().length(10).optional(),
-  mobile: z.string().length(10),
-  email: z.string().email(),
-});
-
 class TenantZod {
+  static Tenant = z.object({
+    propertyId: IdZodSchema.optional(),
+    fullname: z.string().nonempty(),
+    phone: z.string().length(10).optional(),
+    mobile: z.string().length(10),
+    email: z.string().email(),
+  });
   static CreateZodSchema = z.object({
-    body: Tenant,
+    body: this.Tenant,
   });
 
   static GetByIdZodSchema = z.object({
@@ -22,7 +21,7 @@ class TenantZod {
   });
 
   static UpdateZodSchema = z.object({
-    body: Tenant.deepPartial(),
+    body: this.Tenant.deepPartial(),
     params: z.object({
       tenantId: IdZodSchema,
     }),

@@ -3,15 +3,15 @@ import { z } from "zod";
 import IdZodSchema from "./id.zod";
 import AddressZodSchema from "./address.zod";
 
-const Property = z.object({
-  address: AddressZodSchema,
-  landlordId: IdZodSchema,
-  tenantId: IdZodSchema.optional(),
-});
-
 class PropertyZod {
+  static Property = z.object({
+    address: AddressZodSchema,
+    landlordId: IdZodSchema,
+    tenantId: IdZodSchema.optional(),
+  });
+
   static CreateSchema = z.object({
-    body: Property,
+    body: this.Property,
   });
 
   static GetByIdSchema = z.object({
@@ -21,7 +21,7 @@ class PropertyZod {
   });
 
   static UpdateSchema = z.object({
-    body: Property.omit({ tenantId: true }).deepPartial(),
+    body: this.Property.omit({ tenantId: true }).deepPartial(),
     params: z.object({
       propertyId: IdZodSchema,
     }),
